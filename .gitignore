@@ -13,4 +13,5 @@ LaravelBackend/yarn-error.log
 
 
 AngularFrontend/node_modules
+AngularFrontend/bower_components
 AngularFrontend/dist

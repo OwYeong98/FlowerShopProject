@@ -10,12 +10,23 @@
   "license": "ISC",
   "dependencies": {
     "angular": "^1.7.8",
-    "angular-route": "^1.7.8"
+    "angular-route": "^1.7.8",
+    "bootstrap-scss": "^4.3.1",
+    "sweetalert2": "^8.18.3"
   },
   "devDependencies": {
+    "autoprefixer": "^9.6.4",
+    "bower": "^1.8.8",
     "browser-sync": "^2.26.7",
     "gulp": "^4.0.2",
+    "gulp-angular-filesort": "^1.2.1",
     "gulp-cli": "^2.2.0",
-    "gulp-concat": "^2.6.1"
+    "gulp-concat": "^2.6.1",
+    "gulp-inject": "^5.0.4",
+    "gulp-postcss": "^8.0.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.5",
+    "node-sass": "^4.12.0",
+    "wiredep": "^4.0.0"
   }
 }
