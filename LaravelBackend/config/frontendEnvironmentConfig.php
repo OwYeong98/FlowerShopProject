@@ -2,6 +2,6 @@
 
 return
 [
-    'FrontEnd_URL' => env('FrontEnd_URL',null),
-    'FrontEnd_EMAIL_VERIFY_Page' => env('FrontEnd_EMAIL_VERIFY_Page',null),
+    'FRONTEND_URL' => env('FRONTEND_URL',null),
+    'FRONTEND_EMAIL_VERIFY_PAGE' => env('FRONTEND_EMAIL_VERIFY_PAGE',null),
 ];

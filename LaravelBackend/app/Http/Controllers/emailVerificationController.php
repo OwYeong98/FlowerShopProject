@@ -14,7 +14,7 @@ class emailVerificationController extends ApiController
     }
 
     public function verify(Request $request) {
-
+        $this->request = $request;
         if (!$request->hasValidSignature()) {
             //signature expired or value modified
             return $this->respondWithError("link Expired! Please Request again!",self::CODE_FORBIDDEN);
@@ -37,6 +37,7 @@ class emailVerificationController extends ApiController
 
     public function resend(Request $request)
     {
+        $this->request = $request;
         if ($request->user()->hasVerifiedEmail()) {
             return $this->respondWithError('You Have already verify your email!', self::CODE_FORBIDDEN);
         }else{

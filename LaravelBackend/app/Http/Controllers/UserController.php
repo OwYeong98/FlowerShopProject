@@ -23,6 +23,8 @@ class UserController extends ApiController
     }
 
     public function login(Request $request){
+        $this->request = $request;
+
         $emailInput = $request->input('email');
         $passwordInput = $request->input('password');
 
@@ -34,9 +36,7 @@ class UserController extends ApiController
             //create a personal access token
             $token = $loggedInUser->createToken('personal')->accessToken;
 
-
-
-            return $this->respondSuccessWithArray(["token"=>$token]);
+            return $this->respondWithOk();
         }else{
 
             return $this->respondWithError("Email or Password is Wrong!",self::CODE_FORBIDDEN);
@@ -44,7 +44,7 @@ class UserController extends ApiController
     }
 
     public function register(Request $request){
-
+        $this->request = $request;
         //password regex at least 1 uppercase,1 lowercase,1 number,1 special char, and minimun 8 character
         $validation = Validator::make($request->all(),[
             'name' => 'required|alpha',
@@ -66,6 +66,7 @@ class UserController extends ApiController
             $newUser->password = bcrypt($request->input('password'));
             $newUser->phone_no = $request->input('phoneNo');
             $newUser->birth_date = $request->input('birthDate');
+            $newUser->isAdmin = false;
 
             $newUser->save();
 
@@ -76,6 +77,8 @@ class UserController extends ApiController
     }
 
     public function logout(Request $request){
+        $this->request = $request;
+
         $token = $request->user()->token();
 
         logger($token->accessToken);
