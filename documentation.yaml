@@ -1,0 +1,315 @@
+openapi: 3.0.0
+components:
+  securitySchemes:
+    bearerAuth:            
+      type: http
+      scheme: bearer
+      bearerFormat: JWT  
+info:
+  title: Cannis Laravel Backend
+  description: This is a resful api documentation
+  version: 0.1.9
+servers:
+  - url: http://localhost:8000/api
+    description: local server
+tags:
+- name: "User"
+  description: "Function for user"
+paths:
+  /user/login:
+    post:
+      tags:
+      - User
+      summary: Login function
+      description: Pass email and password to get authentication token
+      parameters:
+        - name: email
+          in: query
+          required: true
+          description: Email address 
+          schema:
+            type: string
+        - name: password
+          in: query
+          required: true
+          description: password 
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful login
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  code:
+                    type: string
+                    example: 200
+                  http_code:
+                    type: string
+                    example: OK
+                  content:
+                    type: "object"
+                    properties:
+                      message:
+                        type: string
+                      data:
+                        type: "object"
+                        properties:
+                          token:
+                            type: string
+        '403':
+          description: Error logging in
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  code:
+                    type: string
+                    example: 403
+                  http_code:
+                    type: string
+                    example: Forbidden
+                  content:
+                    type: "object"
+                    properties:
+                      error:
+                        type: array
+                        items:
+                          type: string
+            
+  /user/register:
+    post:
+      tags:
+      - User
+      summary: Register account
+      description: Register account
+      parameters:
+        - name: name
+          in: query
+          required: true
+          description: Name of the user 
+          schema:
+            type: string
+        - name: email
+          in: query
+          required: true
+          description: Email of the user 
+          schema:
+            type: string
+        - name: password
+          in: query
+          required: true
+          description: Password of the user 
+          schema:
+            type: string
+        - name: phoneNo
+          in: query
+          required: true
+          description: phone number of the user 
+          schema:
+            type: string
+        - name: birthDate
+          in: query
+          required: true
+          description: Email of the user 
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Successful registered
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  code:
+                    type: string
+                    example: 200
+                  http_code:
+                    type: string
+                    example: OK
+                  content:
+                    type: "object"
+                    properties:
+                      message:
+                        type: string
+                        example: OK
+        '403':
+          description: Error register
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  code:
+                    type: string
+                    example: 403
+                  http_code:
+                    type: string
+                    example: Forbidden
+                  content:
+                    type: "object"
+                    properties:
+                      error:
+                        type: array
+                        items:
+                          type: string
+                          example: Email already in use!
+ 
+  /user/logout:
+    post:
+      tags:
+      - User
+      summary: Logout account
+      description:  Logout account
+      responses:
+        '200':
+          description: Successful registered
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  code:
+                    type: string
+                    example: 200
+                  http_code:
+                    type: string
+                    example: OK
+                  content:
+                    type: "object"
+                    properties:
+                      message:
+                        type: string
+                        example: OK
+      security:
+        - bearerAuth: []     
+      
+  /user/email/verify/{id}:
+    get:
+      tags:
+      - User
+      summary: Verify user account by link send to user email
+      description: Verify user account by link send to user email
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: id of the user
+          schema:
+            type: integer
+        - name: expire
+          in: query
+          required: true
+          description: expire generated by laravel temporarily signed route
+          schema:
+            type: string
+        - name: signature
+          in: query
+          required: true
+          description: signature generated by laravel signed route
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful verified email
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  code:
+                    type: string
+                    example: 200
+                  http_code:
+                    type: string
+                    example: OK
+                  content:
+                    type: "object"
+                    properties:
+                      message:
+                        type: string
+                        example: OK
+        '403':
+          description: Could not verify
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  code:
+                    type: string
+                    example: 403
+                  http_code:
+                    type: string
+                    example: Forbidden
+                  content:
+                    type: "object"
+                    properties:
+                      error:
+                        type: array
+                        items:
+                          type: string
+                        example: [link expired]
+  /user/email/resend:
+    post:
+      tags:
+      - User
+      summary: resending verification email
+      description:  resending verification email
+      responses:
+        '200':
+            description: Successful resend email
+            content:
+              application/json:
+                schema:
+                  type: "object"
+                  properties: 
+                    code:
+                      type: string
+                      example: 200
+                    http_code:
+                      type: string
+                      example: OK
+                    content:
+                      type: "object"
+                      properties:
+                        message:
+                          type: string
+                          example: OK
+        '403':
+          description: Could not verify
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  code:
+                    type: string
+                    example: 403
+                  http_code:
+                    type: string
+                    example: Forbidden
+                  content:
+                    type: "object"
+                    properties:
+                      error:
+                        type: array
+                        items:
+                          type: string
+                        example: [You already verify your email]
+      security:
+        - bearerAuth: []     
+                       
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  

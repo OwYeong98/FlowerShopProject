@@ -26,7 +26,7 @@ class emailVerifyNotification extends Mailable
         $this->user = $user;
 
         //frontend link for verification
-        $frontendEmailVerifyPageUrl = config('frontendEnvironmentConfig.FrontEnd_URL') . config('frontendEnvironmentConfig.FrontEnd_EMAIL_VERIFY_Page');
+        $frontendEmailVerifyPageUrl = config('frontendEnvironmentConfig.FRONTEND_URL') . config('frontendEnvironmentConfig.FRONTEND_EMAIL_VERIFY_PAGE');
 
         //backend link for verification
         $signedBackendVerificationLink = URL::temporarySignedRoute(
