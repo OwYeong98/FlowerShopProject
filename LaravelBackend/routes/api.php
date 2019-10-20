@@ -27,7 +27,7 @@ Route::get('flowerbouquet', 'FlowerBouquetController@getFlowerBouquetList');
 Route::group(['middleware' => 'auth:api'], function () {
     // User needs to be authenticated to enter here.
     Route::get('user/email/resend', 'emailVerificationController@resend')->name('verification.resend');
-    Route::post('logout', 'UserController@logout');
+    Route::post('/user/logout', 'UserController@logout');
 
     /* *********Route that need admin privilege************** */
     Route::group(['middleware' => 'CheckAdminPrivilege'], function () {

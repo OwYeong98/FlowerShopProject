@@ -12,12 +12,14 @@ angular.module('cannis',
     'ui.select',
     'ui.utils',
     'angular-loading-bar',
-    'satellizer'
+    'satellizer',
+    'cannis.services.users'
 ])
-.config(function ($stateProvider, $authProvider, $locationProvider, $httpProvider, cfpLoadingBarProvider) 
+.config(function ($stateProvider, $authProvider, $locationProvider, $httpProvider, cfpLoadingBarProvider, endPointConstant) 
 {
     $locationProvider.hashPrefix('');
 
+    $authProvider.loginUrl = endPointConstant.apiUrls.login;
     $httpProvider.defaults.headers.common['Accept'] = "application/json";
     $httpProvider.interceptors.push('httpInterceptor');
 

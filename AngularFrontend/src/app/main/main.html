@@ -9,6 +9,12 @@
         <input ng-model="password" type="password" placeholder="Enter Password" name="psw" required>
         
         <button ng-click="submit()">Submit</button>
+
+        <h2>{{token}}</h2>
     </div>
+
+
+    <button ng-click="logout()">logout</button>
+
     <div ui-view></div>
 </div>

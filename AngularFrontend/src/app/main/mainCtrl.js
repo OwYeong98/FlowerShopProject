@@ -1,4 +1,4 @@
-function MainCtrl($scope, $state, $auth, $rootScope, $http, $uibModal){
+function MainCtrl($scope, $state, $auth, $rootScope, $http, $uibModal, userLogout){
 
     $scope.navBarTemplateUrl = '../../components/navigationBar/navbar.html';
 
@@ -10,10 +10,35 @@ function MainCtrl($scope, $state, $auth, $rootScope, $http, $uibModal){
 
     $scope.loginPopUp = loginPopUp;
     $scope.submit = submit;
+    $scope.logout = logout;
 
     function submit(){
-        console.log('zz');
+        $auth.login({email: $scope.username, password: $scope.password })
+        .then(function(response){
+            //success request will come here
+
+            $scope.token = $auth.getToken();
+        })
+        .catch(function(error){
+            //error request respond come here
+        })
     }
+
+    function logout(){
+        console.log('loggin out');
+        userLogout.post(
+            {
+
+            },
+            function (resources){
+                console.log('successfully loggedout');
+            },
+            function (error){
+
+            }
+        )
+    }
+
 
     function loginPopUp(){
         console.log('clicked');
@@ -31,7 +56,7 @@ function MainCtrl($scope, $state, $auth, $rootScope, $http, $uibModal){
 }
 
 MainCtrl.$inject = [
-    '$scope', '$state', '$auth', '$rootScope', '$http', '$uibModal'
+    '$scope', '$state', '$auth', '$rootScope', '$http', '$uibModal', 'userLogout'
 ];
 
 angular.module('cannis')
