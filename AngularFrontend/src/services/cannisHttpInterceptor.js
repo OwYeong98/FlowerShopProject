@@ -24,6 +24,7 @@ angular
 
                 if(!!response.config){
                     if(!!response.headers('authorization')){
+                        console.log('Saving token');
                         $injector.get('$auth').setToken(response.headers('authorization', true));
                     }
                 }

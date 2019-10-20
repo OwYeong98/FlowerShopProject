@@ -78,7 +78,7 @@ gulp.task('copyJs', function(done) {
 });
 
 gulp.task('inject', function(done) {
-	const injectJs = gulp.src(['./dist/**/*.js', '!./dist/script.js']);//inject js and node modules
+	const injectJs = gulp.src(['./dist/**/*.js', '!./dist/script.js', '!./dist/**/*.sample.js']);//inject js and node modules
 
 	var wiredepConfig = {
 		directory: 'bower_components'
@@ -103,7 +103,7 @@ gulp.task('html', function(done) {
 	done();
 });
 
-gulp.task('build',gulp.series(gulp.parallel('scss','copyJs','html'), 'inject'));
+gulp.task('build',gulp.series(gulp.parallel('scss','html'), 'copyJs', 'inject'));
 
 gulp.task('browser-sync', function(done) {
 	browserSync.init(null, {
