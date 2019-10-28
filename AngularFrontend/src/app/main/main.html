@@ -1,20 +1,6 @@
-<div class="container">
+<div class="container-fluid position-relative">
     <div ng-include="navBarTemplateUrl"></div>
-
-    <div class="modal-body" id="modal-body">
-        <label for="uname"><b>Username</b></label>
-        <input ng-model="username" type="text" placeholder="Enter Username" name="uname" required>
-    
-        <label for="psw"><b>Password</b></label>
-        <input ng-model="password" type="password" placeholder="Enter Password" name="psw" required>
-        
-        <button ng-click="submit()">Submit</button>
-
-        <h2>{{token}}</h2>
+    <div ng-class="{'ignoreNavBar': isIgnoreNavBar}">
+        <div ui-view></div>
     </div>
-
-
-    <button ng-click="logout()">logout</button>
-
-    <div ui-view></div>
 </div>

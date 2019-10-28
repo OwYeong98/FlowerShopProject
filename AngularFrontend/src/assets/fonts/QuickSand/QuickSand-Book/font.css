@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'QuicksandBook-Regular';
+  src: url('QuicksandBook-Regular.eot');
+  src: url('QuicksandBook-Regular.woff2') format('woff2'),
+       url('QuicksandBook-Regular.woff') format('woff'),
+       url('QuicksandBook-Regular.ttf') format('truetype'),
+       url('QuicksandBook-Regular.svg#QuicksandBook-Regular') format('svg'),
+       url('QuicksandBook-Regular.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
