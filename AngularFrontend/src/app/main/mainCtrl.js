@@ -1,56 +1,111 @@
-function MainCtrl($scope, $state, $auth, $rootScope, $http, $uibModal, userLogout){
+function MainCtrl($scope, $state, $auth, $rootScope, $http, $uibModal, userLogout) {
 
     $scope.navBarTemplateUrl = '../../components/navigationBar/navbar.html';
+    $scope.isIgnoreNavBar = true;
+    $scope.isNavOpened = false;
 
-    var username;
-    var password;
 
-    $scope.username = username;
-    $scope.password = password;
+    $scope.openNav = openNav;
+    $scope.closeNav = closeNav;
+    $scope.toggleMenu = toggleMenu;
 
-    $scope.loginPopUp = loginPopUp;
-    $scope.submit = submit;
-    $scope.logout = logout;
 
-    function submit(){
-        $auth.login({email: $scope.username, password: $scope.password })
-        .then(function(response){
-            //success request will come here
 
-            $scope.token = $auth.getToken();
-        })
-        .catch(function(error){
-            //error request respond come here
-        })
+    function openNav() {
+        console.log('opening');
+        $scope.isNavOpened = true;
+
+        $("#mySidenav").css("width", "300px");
+        $(".backdrop").css("opacity", "1");
+        $(".backdrop").css("display", "block");
+
+        $("#navFlower").css("transform", "rotate(120deg)");
+        checkHamburgerIcon();
     }
 
-    function logout(){
-        console.log('loggin out');
-        userLogout.post(
-            {
+    function closeNav() {
+        $scope.isNavOpened = false;
+        console.log('closing');
+        $("#mySidenav").css("width", "350px");
+        setTimeout(function () {
+            $("#mySidenav").css("width", "0");
+        }, 200);
+        setTimeout(function () {
+            checkHamburgerIcon();
+        }, 500);
 
-            },
-            function (resources){
-                console.log('successfully loggedout');
-            },
-            function (error){
+        $("#navFlower").css("transform", "rotate(0deg)");
 
-            }
-        )
+
+
+
+        $(".backdrop").css("opacity", "0");
+        $(".backdrop").css("display", "none");
+
     }
 
+    function toggleMenu() {
+        $scope.isNavOpened = $(".hamburgerIcon").hasClass("cross");
 
-    function loginPopUp(){
-        console.log('clicked');
-        $scope.modalInstance = $uibModal.open({
-            ariaLabelledBy: 'modal-title',
-            ariaDescribedBy: 'modal-body',
-            windowClass: 'show',
-            templateUrl: '/components/loginPopUp/loginPopUpModal.html',
-            controller :'loginPopUpCtrl'
+        ($scope.isNavOpened) ? closeNav() : openNav();
+        $(".hamburgerIcon").toggleClass("cross");
+    }
+
+    function checkHamburgerIcon() {
+        if ($(this).scrollTop() == 0 || $scope.isNavOpened == true) {
+            $('#navHamburger').show();
+        } else {
+            $('#navHamburger').hide();
+        }
+    }
+
+    function animateCannisFlowerAndHamper() {
+        console.log("removing class go");
+        
+
+        setTimeout(function () {
+            $(".welcome-word").css("opacity", "1");
+            $("#introName").removeClass("go");
+        }, 500);
+
+        setTimeout(function () {
+            console.log("adding class go");
+            $('#introName').addClass('go');
+        }, 1000);
+
+        setTimeout(function () {
+            $("#introName").css("opacity", "1");
+        }, 1100);        
+
+        setTimeout(function () {
+            $(".welcome-word").addClass('welcome-animate');
+        }, 1500);
+
+        setTimeout(function () {
+            $(".welcome-word").removeClass('welcome-animate');
+            $("#introName").css("opacity", "0");
+            $(".welcome-word").css("opacity", "0");
+        }, 4500);
+    }
+
+    animateCannisFlowerAndHamper();
+
+    setInterval(function () {
+        animateCannisFlowerAndHamper();
+    }, 5500);
+
+    $(function () {
+        $(window).scroll(function () {
+            checkHamburgerIcon();
         });
+    });
 
-    }
+    $scope.$on('ignoreNavbarActionChanged', function (event, yesOrNo) {
+        $scope.isIgnoreNavBar = yesOrNo;
+
+    });
+
+
 
 
 }

@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'QuicksandLight-Regular';
+  src: url('QuicksandLight-Regular.eot');
+  src: url('QuicksandLight-Regular.woff2') format('woff2'),
+       url('QuicksandLight-Regular.woff') format('woff'),
+       url('QuicksandLight-Regular.ttf') format('truetype'),
+       url('QuicksandLight-Regular.svg#QuicksandLight-Regular') format('svg'),
+       url('QuicksandLight-Regular.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+

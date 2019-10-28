@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'QuicksandBold-Regular';
+  src: url('QuicksandBold-Regular.eot');
+  src: url('QuicksandBold-Regular.woff2') format('woff2'),
+       url('QuicksandBold-Regular.woff') format('woff'),
+       url('QuicksandBold-Regular.ttf') format('truetype'),
+       url('QuicksandBold-Regular.svg#QuicksandBold-Regular') format('svg'),
+       url('QuicksandBold-Regular.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+

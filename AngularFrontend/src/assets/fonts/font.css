@@ -1,0 +1,133 @@
+@charset "utf-8";
+/* 
+  Scriptina 
+  A font family that is free for commercial use
+  https://www.1001fonts.com/scriptina-font.html
+*/
+@font-face {
+  font-family: 'SCRIPTIN';
+  src: url('scriptina/scriptin/SCRIPTIN.eot');
+  src: url('scriptina/scriptin/SCRIPTIN.eot?#iefix') format('embedded-opentype'),
+       url('scriptina/scriptin/SCRIPTIN.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Scriptina';
+  src: url('scriptina/scriptin/Scriptina.svg#Scriptina') format('svg'),
+       url('scriptina/scriptin/Scriptina.ttf') format('truetype'),
+       url('scriptina/scriptin/Scriptina.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SCRIPALT';
+  src: url('scriptina/script-alt/SCRIPALT.eot');
+  src: url('scriptina/script-alt/SCRIPALT.eot?#iefix') format('embedded-opentype'),
+       url('scriptina/script-alt/SCRIPALT.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Scriptina-Alternates';
+  src: url('scriptina/script-alt/Scriptina-Alternates.svg#Scriptina-Alternates') format('svg'),
+       url('scriptina/script-alt/Scriptina-Alternates.ttf') format('truetype'),
+       url('scriptina/script-alt/Scriptina-Alternates.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/*
+  Bodoni MT font
+*/
+@font-face {
+  font-family: 'BodoniMT';
+  src: url('bodoniMT/BodoniMT.eot');
+  src: url('bodoniMT/BodoniMT.woff2') format('woff2'),
+       url('bodoniMT/BodoniMT.woff') format('woff'),
+       url('bodoniMT/BodoniMT.ttf') format('truetype'),
+       url('bodoniMT/BodoniMT.svg#BodoniMT') format('svg'),
+       url('bodoniMT/BodoniMT.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/*
+  Quicksand font
+  A font family that is free for commercial use
+  https://www.1001fonts.com/quicksand-font.html
+*/
+@font-face {
+  font-family: 'Quicksand-Light';
+  src: url('QuickSand/QuickSand-Light/QuicksandLight-Regular.eot');
+  src: url('QuickSand/QuickSand-Light/QuicksandLight-Regular.woff2') format('woff2'),
+       url('QuickSand/QuickSand-Light/QuicksandLight-Regular.woff') format('woff'),
+       url('QuickSand/QuickSand-Light/QuicksandLight-Regular.ttf') format('truetype'),
+       url('QuickSand/QuickSand-Light/QuicksandLight-Regular.svg#QuicksandLight-Regular') format('svg'),
+       url('QuickSand/QuickSand-Light/QuicksandLight-Regular.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Quicksand-Book';
+  src: url('QuickSand/QuickSand-Book/QuicksandBook-Regular.eot');
+  src: url('QuickSand/QuickSand-Book/QuicksandBook-Regular.woff2') format('woff2'),
+       url('QuickSand/QuickSand-Book/QuicksandBook-Regular.woff') format('woff'),
+       url('QuickSand/QuickSand-Book/QuicksandBook-Regular.ttf') format('truetype'),
+       url('QuickSand/QuickSand-Book/QuicksandBook-Regular.svg#QuicksandBook-Regular') format('svg'),
+       url('QuickSand/QuickSand-Book/QuicksandBook-Regular.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Quicksand-Bold';
+  src: url('QuickSand/QuickSand-Regular/QuicksandBold-Regular.eot');
+  src: url('QuickSand/QuickSand-Regular/QuicksandBold-Regular.woff2') format('woff2'),
+       url('QuickSand/QuickSand-Regular/QuicksandBold-Regular.woff') format('woff'),
+       url('QuickSand/QuickSand-Regular/QuicksandBold-Regular.ttf') format('truetype'),
+       url('QuickSand/QuickSand-Regular/QuicksandBold-Regular.svg#QuicksandBold-Regular') format('svg'),
+       url('QuickSand/QuickSand-Regular/QuicksandBold-Regular.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/*
+  Latin Modern Mono Font Family font
+  A font family that is free for commercial use
+  https://www.1001fonts.com/latin-modern-mono-font.html
+*/
+
+@font-face {
+  font-family: 'LMMonoLt10-Bold';
+  src: url('Latin/Latin-bold/LMMonoLt10-Bold.eot');
+  src: url('Latin/Latin-bold/LMMonoLt10-Bold.woff2') format('woff2'),
+       url('Latin/Latin-bold/LMMonoLt10-Bold.woff') format('woff'),
+       url('Latin/Latin-bold/LMMonoLt10-Bold.ttf') format('truetype'),
+       url('Latin/Latin-bold/LMMonoLt10-Bold.svg#LMMonoLt10-Bold') format('svg'),
+       url('Latin/Latin-bold/LMMonoLt10-Bold.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'LMMonoLt10-Regular';
+  src: url('Latin/Latin-regular/LMMonoLt10-Regular.eot');
+  src: url('Latin/Latin-regular/LMMonoLt10-Regular.woff2') format('woff2'),
+       url('Latin/Latin-regular/LMMonoLt10-Regular.woff') format('woff'),
+       url('Latin/Latin-regular/LMMonoLt10-Regular.ttf') format('truetype'),
+       url('Latin/Latin-regular/LMMonoLt10-Regular.svg#LMMonoLt10-Regular') format('svg'),
+       url('Latin/Latin-regular/LMMonoLt10-Regular.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
+
+
+

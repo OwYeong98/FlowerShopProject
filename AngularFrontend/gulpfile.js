@@ -1,6 +1,8 @@
 const gulp = require('gulp');
 const concat = require('gulp-concat');
 const uglify = require('gulp-uglify');
+const del = require('del');
+const angularFileSort = require('gulp-angular-filesort');
 
 const browserSync = require('browser-sync').create();
 var devMode = false;
@@ -49,61 +51,70 @@ const sourcemaps = require('gulp-sourcemaps');
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 
-gulp.task('scss', function(done) {
-	gulp.src('./src/*.scss')
-		.pipe(sourcemaps.init())
-		.pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
-		.pipe(postcss([autoprefixer()]))
-		.pipe(sourcemaps.write())
-		.pipe(gulp.dest('./dist'))
-		.pipe(browserSync.reload({
-			stream: true
-		}));
-	done();
+gulp.task('scss', function() {
+	return gulp.src('./src/*.scss')
+				.pipe(sourcemaps.init())
+				.pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
+				.pipe(postcss([autoprefixer()]))
+				.pipe(sourcemaps.write())
+				.pipe(gulp.dest('./dist'))
+				.pipe(browserSync.reload({
+					stream: true
+				}));
 });
 
-gulp.task('copyJs', function(done) {
-	gulp.src('./src/**/*.js')
-		.pipe(gulp.dest('./dist'));
+gulp.task('assets', function() {
+	var promise = gulp.src('./src/assets/**/*')
+					.pipe(gulp.dest('./dist/assets'));
 
-	gulp.src(scripts)
-		.pipe(uglify())
-		.pipe(concat('script.js'))
-		.pipe(gulp.dest('./dist'))
-		.pipe(browserSync.reload({
-			stream: true
-		}));
-		
-	done();
+	return Promise.all([promise]);
 });
 
-gulp.task('inject', function(done) {
-	const injectJs = gulp.src(['./dist/**/*.js', '!./dist/script.js', '!./dist/**/*.sample.js']);//inject js and node modules
-
+gulp.task('inject', function() {
+	var injectJs = gulp.src(['./dist/**/*.js', '!./dist/script.js', '!./dist/**/*.sample.js'])
+		.pipe(angularFileSort());
+	
 	var wiredepConfig = {
 		directory: 'bower_components'
 	};
 	
-
-	gulp.src('./src/index.html')
-		.pipe(gulpInject(injectJs, {ignorePath: ['src', 'dist'], addRootSlash: false}))
-		.pipe(wiredep(Object.assign({}), wiredepConfig))	
-		.pipe(gulp.dest('./dist'))
-		.pipe(browserSync.stream());
-
-	done();
+	//inject js and node modules
+	return gulp.src('./src/index.html')
+			.pipe(gulpInject(injectJs, {ignorePath: ['src', 'dist'], addRootSlash: false}))
+			.pipe(wiredep(Object.assign({}), wiredepConfig))	
+			.pipe(gulp.dest('./dist'))
+			.pipe(browserSync.stream());
 });
 
-gulp.task('html', function(done) {
-	gulp.src('./src/**/*.html')
-		.pipe(gulp.dest('./dist'))
-		.pipe(browserSync.reload({
-			stream: true
-		}));
-	done();
+gulp.task('html', function() {
+	return gulp.src('./src/**/*.html')
+				.pipe(gulp.dest('./dist'))
+				.pipe(browserSync.reload({
+					stream: true
+				}));
 });
 
-gulp.task('build',gulp.series(gulp.parallel('scss','html'), 'copyJs', 'inject'));
+
+gulp.task('copyJs', function() {
+	return gulp.src('./src/**/*.js')
+				.pipe(gulp.dest('./dist'));
+});
+
+gulp.task('compileNodeModule', function() {
+	return gulp.src(scripts)
+				.pipe(uglify())
+				.pipe(concat('script.js'))
+				.pipe(gulp.dest('./dist'))
+				.pipe(browserSync.reload({
+					stream: true
+				}));
+});
+
+gulp.task('clean', function () {
+	return Promise.all([del('./dist')]);
+});
+
+gulp.task('build', gulp.series('scss', 'html', 'copyJs', 'compileNodeModule', 'assets', 'inject'));
 
 gulp.task('browser-sync', function(done) {
 	browserSync.init(null, {
@@ -119,10 +130,11 @@ gulp.task('browser-sync', function(done) {
 	done();
 });
 
-gulp.task('start',gulp.series('build','browser-sync', function(done) {
+gulp.task('serve',gulp.series('clean', 'build', 'browser-sync', function(cb) {
 	devMode = true;
 	gulp.watch(['./src/**/*.css', './src/**/*.scss'],gulp.series('scss'));
-	gulp.watch(['./src/**/*.js'], gulp.series('build'));
-	gulp.watch(['./src/**/*.html'],gulp.series('build'));
-	done();
-}))
+	gulp.watch(['./src/**/*.js'], gulp.series('copyJs', 'inject'));
+	gulp.watch(['./node_modules/**/*.js'], gulp.series('compileNodeModule'));
+	gulp.watch(['./src/**/*.html'],gulp.series('html', 'inject'));
+	cb();
+}));

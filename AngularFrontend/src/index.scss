@@ -1,0 +1,321 @@
+/**
+*   SECTION: Node Module Scss Plugin
+*   Please ensure that this section is located at the top line
+*
+*   All Scss Plugin should specify in this section
+*
+*/
+
+@import "../node_modules/rfs/scss.scss";//RFS - A scss plugin that help for responsive font size
+
+/**
+*   SECTION: Custom Css Written File
+*   Please ensure all seperated css file will be specified here
+*   NOTE: This is because only index.css is linked into the index HTML
+*/
+@import "assets/css/animationKeyFrame";//A Custom written css file that include all animation keyframe.
+
+$zindex-dropdown: 1000 !default;
+$zindex-sticky: 1020 !default;
+$zindex-fixed: 1030 !default;
+$zindex-modal-backdrop: 1040 !default;
+$zindex-modal: 1050 !default;
+$zindex-popover: 1060 !default;
+$zindex-tooltip: 1070 !default;
+
+$font-scriptina: "Scriptina";
+$font-bodoni: "BodoniMT";
+$font-quicksand-light: "Quicksand-Light";
+$font-quicksand-book: "Quicksand-Book";
+$font-quicksand-bold: "Quicksand-Bold";
+$font-latin-regular: "LMMonoLt10-Regular";
+$font-latin-bold: "LMMonoLt10-Bold";
+
+$color-primarytext: #304563;
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.ignoreNavBar {
+    width: inherit;
+    padding-left: inherit;
+    padding-right: inherit;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    top: 0;
+}
+
+#topNav {
+    z-index: $zindex-sticky;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1030;
+    top: 0;
+    right: 0;
+    background-color: white;
+    overflow-x: hidden;
+    transition: 0.5s ease-in-out;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.6s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.backdrop {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 1020;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.6);
+    transition: opacity 0.5s ease-in-out;
+    top: 0;
+    left: 0;
+}
+
+.hamburgerContainer {
+    text-align: right;
+    right: 0;
+    top: 0;
+    position: fixed;
+    z-index: 1030;
+    margin: 0.5rem 1rem 1rem 0rem;
+}
+
+.hamburgerSvg {
+    width: 100px;
+    cursor: pointer;
+    transform: translate3d(0, 0, 0);
+}
+.hamburgerPath {
+    fill: none;
+    transition: stroke-dashoffset 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25),
+        stroke-dasharray 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25);
+    stroke-width: 20px;
+    stroke-linecap: round;
+    stroke: $color-primarytext;
+    stroke-dashoffset: 0px;
+}
+.hamburgerPath#top,
+.hamburgerPath#bottom {
+    stroke-dasharray: 240px 950px;
+}
+.hamburgerPath#middle {
+    stroke-dasharray: 240px 240px;
+}
+.cross .hamburgerPath#top,
+.cross .hamburgerPath#bottom {
+    stroke-dashoffset: -650px;
+    stroke-dashoffset: -650px;
+}
+.cross .hamburgerPath#middle {
+    stroke-dashoffset: -115px;
+    stroke-dasharray: 1px 220px;
+}
+
+#navHamburger {
+    display: inline-block;
+}
+
+.sideNavContainer {
+    padding-top: 5rem;
+}
+
+#navFlower {
+    width: 7rem;
+    height: 7rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: transparent;
+    transform-origin: bottom center;
+    transform: rotate(0deg);
+    transition: 0.7s ease-in-out;
+    opacity: 1;
+    margin-left: -70px;
+    margin-top: -100px;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.welcome-container {
+    height: 80vh;
+    background-image: url("assets/image/intro-bg.png");
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-size: cover;
+
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.filter {
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.2;
+}
+
+.welcome-wrapper {
+    width: 60%;
+    padding: 20px;
+    display: inline-block;
+    text-align: center;
+    z-index: 10;
+}
+
+.welcome-wrapper h1 {
+    @include font-size(9rem !important);
+    font-family: $font-scriptina;
+    color: #fcdd00;
+    padding: 5px;
+    transition: 1s ease-in-out;
+
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.welcome-animate {
+    animation: shake 0.85s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+.welcome-wrapper p {
+    @include font-size(3.5rem !important);
+    font-family: $font-bodoni;
+    color: white;
+
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.shopnow {
+    display: inline-block;
+    @include font-size(2.5rem !important);
+    font-family: $font-bodoni;
+    color: white;
+    border: 1px solid white;
+    border-left: 0px;
+    border-right: 0px;
+    border-radius: 0px;
+    margin-top: 1rem;
+    padding: 10px;
+    transition: 0.5s ease-in-out;
+    cursor: pointer;
+    transform: translatey(0px);
+    animation: float 6s ease-in-out infinite;
+    
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.shopnow:hover {
+    color: $color-primarytext;
+    border-radius: 10px;
+    background-color: white;
+}
+
+#introName {
+    transition: 1s ease-in-out;
+    opacity: 1;
+}
+
+.face:hover {
+    animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+svg.intro {
+    .text {
+        display: none;
+    }
+    &.go {
+        .text {
+            font-family: $font-bodoni;
+            font-size: 1rem;
+            display: block;
+        }
+        .text-stroke {
+            fill: none;
+            stroke: white;
+            stroke-width: 2.8px;
+            stroke-dashoffset: -900;
+            stroke-dasharray: 900;
+            stroke-linecap: butt;
+            stroke-linejoin: round;
+            animation: dash 2.5s ease-in-out forwards;
+        }
+        .text-stroke:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+        .text-stroke:nth-child(3) {
+            animation-delay: 0.9s;
+        }
+        .text-stroke-2 {
+            stroke: white;
+            animation-delay: 1.2s;
+        }
+        .text-stroke:nth-child(5) {
+            animation-delay: 1.5s;
+        }
+        .text-stroke:nth-child(6) {
+            animation-delay: 1.8s;
+        }
+    }
+}
+
+
+/**
+*   SECTION: @media custom fix Section
+*   Please ensure that this section is located at the last line
+*
+*   All Custom Media Screen fix should include in the file customMediaFix.css
+*/
+@import "assets/css/customMediaFix";

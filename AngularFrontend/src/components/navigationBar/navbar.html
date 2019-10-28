@@ -1,35 +1,36 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+<div id="topNav" class="navbar row">
+  <a class="navbar-brand" href="#" ng-click="openNav()">Navbar</a>
+  <div class="hamburgerIcon" ng-click="toggleMenu()">
+    <svg class="hamburgerSvg" viewBox="0 0 800 600">
+      <path class="hamburgerPath"
+        d="M300,220 C300,220 520,220 540,220 C740,220 640,540 520,420 C440,340 300,200 300,200" id="top"></path>
+      <path class="hamburgerPath" d="M300,320 L540,320" id="middle"></path>
+      <path class="hamburgerPath"
+        d="M300,210 C300,210 520,210 540,210 C740,210 640,530 520,410 C440,330 300,190 300,190" id="bottom"
+        transform="translate(480, 320) scale(1, -1) translate(-480, -318) "></path>
+    </svg>
   </div>
-</nav>
+
+  <div class="backdrop" ng-click="toggleMenu()"></div>
+  <div id="mySidenav" class="sidenav">
+    <div class="hamburgerContainer">
+      <div id="navHamburger" class="hamburgerIcon text-right" ng-click="toggleMenu()">
+        <svg class="hamburgerSvg" viewBox="0 0 800 600">
+          <path class="hamburgerPath"
+            d="M300,220 C300,220 520,220 540,220 C740,220 640,540 520,420 C440,340 300,200 300,200" id="top"></path>
+          <path class="hamburgerPath" d="M300,320 L540,320" id="middle"></path>
+          <path class="hamburgerPath"
+            d="M300,210 C300,210 520,210 540,210 C740,210 640,530 520,410 C440,330 300,190 300,190" id="bottom"
+            transform="translate(480, 320) scale(1, -1) translate(-480, -318) "></path>
+        </svg>
+      </div>
+    </div>
+    <div class="sideNavContainer position-relative w-100">
+      <img src="assets/image/navflower.svg" id="navFlower" class="img-thumbnail border-0" alt="">
+      <a href="#">About</a>
+      <a href="#">Services</a>
+      <a href="#">Clients</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+</div>
