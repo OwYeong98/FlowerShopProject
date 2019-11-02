@@ -6,14 +6,14 @@
 *
 */
 
-@import "../node_modules/rfs/scss.scss";//RFS - A scss plugin that help for responsive font size
+@import "../node_modules/rfs/scss.scss"; //RFS - A scss plugin that help for responsive font size
 
 /**
 *   SECTION: Custom Css Written File
 *   Please ensure all seperated css file will be specified here
 *   NOTE: This is because only index.css is linked into the index HTML
 */
-@import "assets/css/animationKeyFrame";//A Custom written css file that include all animation keyframe.
+@import "assets/css/animationKeyFrame"; //A Custom written css file that include all animation keyframe.
 
 $zindex-dropdown: 1000 !default;
 $zindex-sticky: 1020 !default;
@@ -29,13 +29,22 @@ $font-quicksand-light: "Quicksand-Light";
 $font-quicksand-book: "Quicksand-Book";
 $font-quicksand-bold: "Quicksand-Bold";
 $font-latin-regular: "LMMonoLt10-Regular";
+$font-latin-light: "LMMonoLt10-Light";
 $font-latin-bold: "LMMonoLt10-Bold";
 
-$color-primarytext: #304563;
+$color-white: #ffffff;
+$color-primary-blue: #304563;
+$color-primary-gold: #fcdd00;
+$color-primary-green: #2f6045;
+$color-primary-green-light: #72af8c;
 
 body {
     margin: 0;
     padding: 0;
+}
+
+.cursor-pointer{
+    cursor: pointer;
 }
 
 .ignoreNavBar {
@@ -53,6 +62,10 @@ body {
     z-index: $zindex-sticky;
 }
 
+.logo {
+    width: 40%;
+    padding: 20px 0px;
+}
 .sidenav {
     height: 100%;
     width: 0;
@@ -113,13 +126,16 @@ body {
     cursor: pointer;
     transform: translate3d(0, 0, 0);
 }
+.hamburgerMain {
+    stroke: white !important;
+}
 .hamburgerPath {
     fill: none;
     transition: stroke-dashoffset 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25),
         stroke-dasharray 0.5s cubic-bezier(0.25, -0.25, 0.75, 1.25);
     stroke-width: 20px;
     stroke-linecap: round;
-    stroke: $color-primarytext;
+    stroke: $color-primary-blue;
     stroke-dashoffset: 0px;
 }
 .hamburgerPath#top,
@@ -141,6 +157,7 @@ body {
 
 #navHamburger {
     display: inline-block;
+    opacity: 0;
 }
 
 .sideNavContainer {
@@ -199,9 +216,9 @@ body {
 }
 
 .welcome-wrapper h1 {
-    @include font-size(9rem !important);
+    @include font-size(9rem);
     font-family: $font-scriptina;
-    color: #fcdd00;
+    color: $color-primary-gold;
     padding: 5px;
     transition: 1s ease-in-out;
 
@@ -246,7 +263,7 @@ body {
     cursor: pointer;
     transform: translatey(0px);
     animation: float 6s ease-in-out infinite;
-    
+
     user-select: none;
     -moz-user-select: none;
     -webkit-user-drag: none;
@@ -255,7 +272,7 @@ body {
 }
 
 .shopnow:hover {
-    color: $color-primarytext;
+    color: $color-primary-blue;
     border-radius: 10px;
     background-color: white;
 }
@@ -309,6 +326,154 @@ svg.intro {
             animation-delay: 1.8s;
         }
     }
+}
+
+.hot-deals-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+}
+
+.hot-deals-header h1,
+p {
+    @include font-size(1.5rem);
+    font-family: $font-latin-regular;
+    color: $color-primary-green;
+    letter-spacing: 0.2rem;
+    margin: 0 5px;
+}
+
+.hot-deal-panel {
+    padding: 5px;
+}
+
+.hot-deal-panel img{
+    width: 20px;
+}
+
+.hot-deal-leaf-wrapper {
+    width: calc(100% - 60px);
+    overflow: hidden;
+}
+
+.hot-deal-leaf {
+    width: 100% !important;
+
+}
+
+.hot-deal-leaf-img {
+    width: 100%;
+    height: 50px;
+    background-image: url('assets/image/line-of-leaf.svg');
+    background-position: 0% 0%;
+    background-repeat: repeat-x;
+}
+
+.hot-deal-leaf-move-left {
+    animation: moveLeftBg 1s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-duration: 2s;
+}
+
+.hot-deal-leaf-move-right {
+    animation: moveRightBg 1s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-duration: 2s;
+}
+
+.outline-button-hover {
+    padding: 0.5rem 1.5rem;
+    border: solid 1px $color-primary-green;
+    border-radius: 50px;
+}
+
+.outline-button-hover:hover {
+    cursor: pointer;
+    background: $color-primary-green;
+    color: $color-white;
+}
+
+.carousel {
+    width: 100%;
+    margin: 0px auto;
+}
+.custom-item {
+    display: inline-block !important;
+    letter-spacing: normal;
+    margin-top: 2rem;
+    position: relative;
+}
+
+.custom-item p {
+    @include font-size(1.5rem);
+    color: $color-primary-blue;
+    font-family: $font-quicksand-book;
+}
+
+.custom-item:hover .item-hover{
+    opacity: .65;
+}
+
+.item-hover {
+    width: 100%;
+    height: 100%;
+    transition: .5s ease-in-out;
+    opacity: 0;
+    background: rgb(182, 182, 182);
+    position: absolute;
+    margin: 0 !important;
+    top:0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    transform: scale(1.05);
+    border-radius: 20px;
+}
+
+.item-hover p{
+    @include font-size(3rem);
+    font-family: $font-quicksand-book;
+    color: $color-white;
+    margin: auto;
+}
+.slick-slide {
+    outline: none
+}
+.slick-dots li button:before
+{
+    @include font-size(2rem);
+    line-height: 4rem;
+    color: $color-primary-green;
+}
+
+.slick-dots li.slick-active button:before {
+    color: $color-primary-green;
+}
+
+.slick-slide div{
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-bottom: 20px;
+    align-items: center;
+    justify-content: space-between;
+    text-align: justify;
+    -ms-text-justify: distribute-all-lines;
+}
+
+.slick-slide img {
+    width: 100%;
+    
+}
+
+.slick-prev:before,
+.slick-next:before {
+    color: red !important;
 }
 
 

@@ -1,4 +1,4 @@
-function MainCtrl($scope, $state, $auth, $rootScope, $http, $uibModal, userLogout) {
+function MainCtrl($scope, $state, $auth, $rootScope, $http, $uibModal, userLogout, generalFunction) {
 
     $scope.navBarTemplateUrl = '../../components/navigationBar/navbar.html';
     $scope.isIgnoreNavBar = true;
@@ -16,6 +16,7 @@ function MainCtrl($scope, $state, $auth, $rootScope, $http, $uibModal, userLogou
         $scope.isNavOpened = true;
 
         $("#mySidenav").css("width", "300px");
+        $("#navHamburger").css("opacity", "1");
         $(".backdrop").css("opacity", "1");
         $(".backdrop").css("display", "block");
 
@@ -52,7 +53,8 @@ function MainCtrl($scope, $state, $auth, $rootScope, $http, $uibModal, userLogou
     }
 
     function checkHamburgerIcon() {
-        if ($(this).scrollTop() == 0 || $scope.isNavOpened == true) {
+        console.log('isNavOpened ' + $scope.isNavOpened);
+        if ($(this).scrollTop() >= 0 && $scope.isNavOpened == true) {
             $('#navHamburger').show();
         } else {
             $('#navHamburger').hide();
@@ -61,7 +63,7 @@ function MainCtrl($scope, $state, $auth, $rootScope, $http, $uibModal, userLogou
 
     function animateCannisFlowerAndHamper() {
         console.log("removing class go");
-        
+
 
         setTimeout(function () {
             $(".welcome-word").css("opacity", "1");
@@ -75,7 +77,7 @@ function MainCtrl($scope, $state, $auth, $rootScope, $http, $uibModal, userLogou
 
         setTimeout(function () {
             $("#introName").css("opacity", "1");
-        }, 1100);        
+        }, 1100);
 
         setTimeout(function () {
             $(".welcome-word").addClass('welcome-animate');
@@ -88,21 +90,31 @@ function MainCtrl($scope, $state, $auth, $rootScope, $http, $uibModal, userLogou
         }, 4500);
     }
 
-    animateCannisFlowerAndHamper();
+    function initialize() {
 
-    setInterval(function () {
+        checkHamburgerIcon();
         animateCannisFlowerAndHamper();
-    }, 5500);
 
-    $(function () {
-        $(window).scroll(function () {
-            checkHamburgerIcon();
+        setInterval(function () {
+            animateCannisFlowerAndHamper();
+        }, 5500);
+
+        $(function () {
+            $(window).scroll(function () {
+                checkHamburgerIcon();
+            });
         });
-    });
+    }
+
+    initialize();
 
     $scope.$on('ignoreNavbarActionChanged', function (event, yesOrNo) {
         $scope.isIgnoreNavBar = yesOrNo;
 
+    });
+
+    $scope.$on('hamburgerColorChanged', function (event, color) {
+        $('.hamburgerMain').css('stroke', color + ' !important');
     });
 
 
@@ -111,7 +123,7 @@ function MainCtrl($scope, $state, $auth, $rootScope, $http, $uibModal, userLogou
 }
 
 MainCtrl.$inject = [
-    '$scope', '$state', '$auth', '$rootScope', '$http', '$uibModal', 'userLogout'
+    '$scope', '$state', '$auth', '$rootScope', '$http', '$uibModal', 'userLogout', 'generalFunction'
 ];
 
 angular.module('cannis')

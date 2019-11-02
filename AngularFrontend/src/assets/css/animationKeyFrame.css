@@ -28,13 +28,33 @@
 }
 
 @keyframes float {
-	0% {
-		transform: translatey(0px);
-	}
-	50% {
-		transform: translatey(-10px);
-	}
-	100% {
-		transform: translatey(0px);
-	}
+    0% {
+        transform: translatey(0px);
+    }
+    50% {
+        transform: translatey(-10px);
+    }
+    100% {
+        transform: translatey(0px);
+    }
+}
+
+@keyframes moveSlideshow {
+    100% {
+        transform: translateX(-1130px);
+    }
+}
+
+@keyframes moveLeftBg {
+    100% { 
+        background-position: -1435px 0%;
+    }
+
+}
+
+@keyframes moveRightBg {
+    100% { 
+        background-position: 1435px 0%;
+    }
+
 }

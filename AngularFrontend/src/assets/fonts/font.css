@@ -115,13 +115,25 @@
 }
 
 @font-face {
+  font-family: 'LMMonoLt10-Light';
+  src: url('Latin/Latin-light/LMMonoLt10-Regular.eot');
+  src: url('Latin/Latin-light/LMMonoLt10-Regular.woff2') format('woff2'),
+       url('Latin/Latin-light/LMMonoLt10-Regular.woff') format('woff'),
+       url('Latin/Latin-light/LMMonoLt10-Regular.ttf') format('truetype'),
+       url('Latin/Latin-light/LMMonoLt10-Regular.svg#LMMonoLt10-Regular') format('svg'),
+       url('Latin/Latin-light/LMMonoLt10-Regular.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
   font-family: 'LMMonoLt10-Regular';
-  src: url('Latin/Latin-regular/LMMonoLt10-Regular.eot');
-  src: url('Latin/Latin-regular/LMMonoLt10-Regular.woff2') format('woff2'),
-       url('Latin/Latin-regular/LMMonoLt10-Regular.woff') format('woff'),
-       url('Latin/Latin-regular/LMMonoLt10-Regular.ttf') format('truetype'),
-       url('Latin/Latin-regular/LMMonoLt10-Regular.svg#LMMonoLt10-Regular') format('svg'),
-       url('Latin/Latin-regular/LMMonoLt10-Regular.eot?#iefix') format('embedded-opentype');
+  src: url('Latin/Latin-regular/LMMono10-Regular.eot');
+  src: url('Latin/Latin-regular/LMMono10-Regular.woff2') format('woff2'),
+       url('Latin/Latin-regular/LMMono10-Regular.woff') format('woff'),
+       url('Latin/Latin-regular/LMMono10-Regular.ttf') format('truetype'),
+       url('Latin/Latin-regular/LMMono10-Regular.svg#LMMono10-Regular') format('svg'),
+       url('Latin/Latin-regular/LMMono10-Regular.eot?#iefix') format('embedded-opentype');
   font-weight: normal;
   font-style: normal;
 }

@@ -34,5 +34,6 @@
 	"./node_modules/angular-ui-utils/modules/unique/unique.js",
 	"./node_modules/angular-ui-utils/modules/validate/validate.js",
 	"./node_modules/angular-ui-utils/modules/utils.js",
-	"./node_modules/satellizer/dist/satellizer.min.js"
+	"./node_modules/satellizer/dist/satellizer.min.js",
+	"./node_modules/slick-carousel/slick/slick.min.js"
 ]
