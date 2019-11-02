@@ -6,10 +6,136 @@ function homeCtrl($scope, $auth, $state, $rootScope, endPointConstant) {
 
     $scope.username = username;
     $scope.password = password;
+    $scope.hotDealData = [
+        {
+            name: 'Flower 1',
+            price: 100,
+            imgUrl: 'https://i.ibb.co/1mBXBPs/Flower-Template1.png'
+
+        },
+        {
+            name: 'Flower 2',
+            price: 200,
+            imgUrl: 'https://i.ibb.co/Lgn7WyX/Flower-Template2.png'
+
+        },
+        {
+            name: 'Flower 3',
+            price: 300,
+            imgUrl: 'https://i.ibb.co/4MnbdWW/Flower-Template3.png'
+
+        },
+        {
+            name: 'Flower 4',
+            price: 400,
+            imgUrl: 'https://i.ibb.co/QDhmML2/Flower-Template4.png'
+
+        },
+        {
+            name: 'Flower 1',
+            price: 100,
+            imgUrl: 'https://i.ibb.co/1mBXBPs/Flower-Template1.png'
+
+        },
+        {
+            name: 'Flower 2',
+            price: 200,
+            imgUrl: 'https://i.ibb.co/Lgn7WyX/Flower-Template2.png'
+
+        },
+        {
+            name: 'Flower 3',
+            price: 300,
+            imgUrl: 'https://i.ibb.co/4MnbdWW/Flower-Template3.png'
+
+        },
+        {
+            name: 'Flower 4',
+            price: 400,
+            imgUrl: 'https://i.ibb.co/QDhmML2/Flower-Template4.png'
+
+        },
+        {
+            name: 'Flower 1',
+            price: 100,
+            imgUrl: 'https://i.ibb.co/1mBXBPs/Flower-Template1.png'
+
+        },
+        {
+            name: 'Flower 2',
+            price: 200,
+            imgUrl: 'https://i.ibb.co/Lgn7WyX/Flower-Template2.png'
+
+        },
+        {
+            name: 'Flower 3',
+            price: 300,
+            imgUrl: 'https://i.ibb.co/4MnbdWW/Flower-Template3.png'
+
+        },
+        {
+            name: 'Flower 4',
+            price: 400,
+            imgUrl: 'https://i.ibb.co/QDhmML2/Flower-Template4.png'
+
+        },
+        {
+            name: 'Flower 1',
+            price: 100,
+            imgUrl: 'https://i.ibb.co/1mBXBPs/Flower-Template1.png'
+
+        },
+        {
+            name: 'Flower 2',
+            price: 200,
+            imgUrl: 'https://i.ibb.co/Lgn7WyX/Flower-Template2.png'
+
+        },
+        {
+            name: 'Flower 3',
+            price: 300,
+            imgUrl: 'https://i.ibb.co/4MnbdWW/Flower-Template3.png'
+
+        },
+        {
+            name: 'Flower 4',
+            price: 400,
+            imgUrl: 'https://i.ibb.co/QDhmML2/Flower-Template4.png'
+
+        },
+        {
+            name: 'Flower 1',
+            price: 100,
+            imgUrl: 'https://i.ibb.co/1mBXBPs/Flower-Template1.png'
+
+        },
+        {
+            name: 'Flower 2',
+            price: 200,
+            imgUrl: 'https://i.ibb.co/Lgn7WyX/Flower-Template2.png'
+
+        },
+        {
+            name: 'Flower 3',
+            price: 300,
+            imgUrl: 'https://i.ibb.co/4MnbdWW/Flower-Template3.png'
+
+        },
+        {
+            name: 'Flower 4',
+            price: 400,
+            imgUrl: 'https://i.ibb.co/QDhmML2/Flower-Template4.png'
+
+        }
+
+    ];
+
 
     $scope.loginPopUp = loginPopUp;
     $scope.submit = submit;
     $scope.logout = logout;
+
+    
 
     function submit() {
         $auth.login({ email: $scope.username, password: $scope.password })

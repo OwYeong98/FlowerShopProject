@@ -1,0 +1,26 @@
+<div class="row hot-deals-header">
+    <h1>Hot Deals</h1>
+    <p class="outline-button-hover">More Info +</p>
+</div>
+<div class="hot-deal-panel d-flex justify-content-between">
+    <img id="hot-deal-left-arrow" class="cursor-pointer" ng-click="previousPage()" src="../../assets/image/left-arrow.svg" alt="">
+    <div class="hot-deal-leaf-wrapper">
+        <div class="hot-deal-leaf-img"></div>
+    </div>
+    <img id="hot-deal-right-arrow" class="cursor-pointer" ng-click="nextPage()" src="../../assets/image/right-arrow.svg" alt="">
+</div>
+
+<div class="row">
+    <div class="carousel">
+        <div class="custom-item" ng-repeat="item in data">
+            <img ng-src="{{item.imgUrl}}" alt="">
+            <p>
+                {{item.name}}<br>
+                Rm {{item.price}}
+            </p>
+            <div class="item-hover">
+                <p>Shop Now</p>
+            </div>  
+        </div>
+    </div>
+</div>
