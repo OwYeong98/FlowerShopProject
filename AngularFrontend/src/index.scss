@@ -36,6 +36,7 @@ $color-white: #ffffff;
 $color-primary-blue: #304563;
 $color-primary-gold: #fcdd00;
 $color-primary-green: #2f6045;
+$color-primary-green-contrast: #00885b;
 $color-primary-green-light: #72af8c;
 
 body {
@@ -64,7 +65,6 @@ body {
 
 .logo {
     width: 40%;
-    padding: 20px 0px;
 }
 .sidenav {
     height: 100%;
@@ -375,14 +375,13 @@ p {
     animation: moveLeftBg 1s;
     animation-timing-function: linear;
     animation-fill-mode: forwards;
-    animation-duration: 2s;
 }
 
 .hot-deal-leaf-move-right {
     animation: moveRightBg 1s;
     animation-timing-function: linear;
     animation-fill-mode: forwards;
-    animation-duration: 2s;
+
 }
 
 .outline-button-hover {
@@ -409,13 +408,21 @@ p {
 }
 
 .custom-item p {
-    @include font-size(1.5rem);
-    color: $color-primary-blue;
+    @include font-size(1rem);
+    color: $color-primary-green;
     font-family: $font-quicksand-book;
+    word-break: break-all;
+    max-width: 100%;
+    min-width: 100%;
 }
 
 .custom-item:hover .item-hover{
     opacity: .65;
+}
+
+.price {
+    @include font-size(1.3rem);
+    color: $color-primary-green-contrast;
 }
 
 .item-hover {
@@ -435,7 +442,8 @@ p {
 }
 
 .item-hover p{
-    @include font-size(3rem);
+    @include font-size(1.5rem);
+    text-align: center;
     font-family: $font-quicksand-book;
     color: $color-white;
     margin: auto;
@@ -460,7 +468,7 @@ p {
     margin-left: 10px;
     margin-right: 10px;
     padding-bottom: 20px;
-    align-items: center;
+    //align-items: center;
     justify-content: space-between;
     text-align: justify;
     -ms-text-justify: distribute-all-lines;
@@ -471,12 +479,93 @@ p {
     
 }
 
-.slick-prev:before,
-.slick-next:before {
-    color: red !important;
+.footer-nav-wrapper{
+    float: left;
+    
+}
+
+.footer-nav-wrapper span{
+    font-family: $font-quicksand-book;
+    @include font-size(1.5rem);
+    color: $color-primary-green;
 }
 
 
+.footer-nav-wrapper a{
+    text-decoration: none;
+}
+
+.footer-nav-wrapper p{
+    color: $color-primary-green;
+    font-family: $font-quicksand-book;
+    letter-spacing: normal;
+    @include font-size(1.2rem);
+}
+
+.social-icon-wrapper {
+    width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2rem;
+    
+
+}
+
+.social-icon-wrapper a img {
+    width: 40px;
+    height: 40px;
+    
+}
+
+.subcribe-container {
+    float: right;
+}
+
+.subcribe-container span{
+    font-family: $font-quicksand-book;
+    @include font-size(1.5rem);
+    color: $color-primary-green;
+}
+
+.subcribe-container p{
+    color: $color-primary-green;
+    font-family: $font-quicksand-book;
+    letter-spacing: normal;
+    margin: 0;
+    @include font-size(1.2rem);
+}
+
+.subcribe-wrapper {
+    display: flex;
+}
+
+.subcribe-email {
+    width: 100%;
+    height: 46px;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    border-radius: 23px;
+    background: $color-primary-green-light;
+    padding: 15px;
+    padding-right: 52px;
+    -webkit-appearance: none;
+    color: $color-white;
+    font-family: $font-quicksand-light;
+}
+
+.subcribe-email:focus{
+    outline: none;
+}
+.subcribe-email-go {    
+    height: 46px;
+    margin-left: -46px;
+    border: 0;
+    cursor: pointer;
+    -webkit-appearance: none;
+}
 /**
 *   SECTION: @media custom fix Section
 *   Please ensure that this section is located at the last line

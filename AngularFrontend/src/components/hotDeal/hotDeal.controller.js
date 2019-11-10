@@ -4,6 +4,7 @@ function hotDealCtrl($scope, $state, $rootScope, endPointConstant, generalFuncti
 
     $scope.nextPage = nextPage;
     $scope.previousPage = previousPage;
+    $scope.calcDiscount = generalFunction.calcDiscount;
     /*
     * HACK!: Call $timeout without passing a delay
     * 
@@ -17,7 +18,7 @@ function hotDealCtrl($scope, $state, $rootScope, endPointConstant, generalFuncti
     $timeout(function () {
         $('.carousel').slick({
             dots: true,
-            slidesPerRow: 4,
+            slidesPerRow: 5,
             rows: 2,
             speed: 1000,
             cssEase: 'ease-in-out',
@@ -27,7 +28,7 @@ function hotDealCtrl($scope, $state, $rootScope, endPointConstant, generalFuncti
                 {
                     breakpoint: 1500,
                     settings: {
-                        slidesPerRow: 3
+                        slidesPerRow: 5
                     }
                 },
                 {

@@ -13,14 +13,19 @@
 <div class="row">
     <div class="carousel">
         <div class="custom-item" ng-repeat="item in data">
-            <img ng-src="{{item.imgUrl}}" alt="">
-            <p>
-                {{item.name}}<br>
-                Rm {{item.price}}
-            </p>
-            <div class="item-hover">
-                <p>Shop Now</p>
-            </div>  
+            <div ng-if="!!item.name" class="m-0 p-0">
+                <img ng-src="{{item.imgUrl}}" alt="">
+                <p>
+                    {{item.name}}<br>
+                    <span class="price" ng-if="!!item.price">RM {{item.price}}</span>
+                </p>
+                <p class="" ng-if="!!item.prevPrice">
+                    <del>RM {{item.prevPrice}}</del> &nbsp&nbsp-{{calcDiscount(item.prevPrice, item.price)}} %
+                </p>
+                <div class="item-hover">
+                    <p>Shop Now</p>
+                </div>  
+            </div>
         </div>
     </div>
 </div>

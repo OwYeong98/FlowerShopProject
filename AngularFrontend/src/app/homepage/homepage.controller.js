@@ -10,13 +10,15 @@ function homeCtrl($scope, $auth, $state, $rootScope, endPointConstant) {
         {
             name: 'Flower 1',
             price: 100,
-            imgUrl: 'https://i.ibb.co/1mBXBPs/Flower-Template1.png'
+            imgUrl: 'https://i.ibb.co/1mBXBPs/Flower-Template1.png',
+            prevPrice: 150
 
         },
         {
             name: 'Flower 2',
             price: 200,
-            imgUrl: 'https://i.ibb.co/Lgn7WyX/Flower-Template2.png'
+            imgUrl: 'https://i.ibb.co/Lgn7WyX/Flower-Template2.png',
+            prevPrice: 400
 
         },
         {
@@ -125,6 +127,12 @@ function homeCtrl($scope, $auth, $state, $rootScope, endPointConstant) {
             name: 'Flower 4',
             price: 400,
             imgUrl: 'https://i.ibb.co/QDhmML2/Flower-Template4.png'
+
+        },
+        {
+            name: '',
+            price: '',
+            imgUrl: ''
 
         }
 

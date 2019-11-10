@@ -1,6 +1,7 @@
 function MainCtrl($scope, $state, $auth, $rootScope, $http, $uibModal, userLogout, generalFunction) {
 
     $scope.navBarTemplateUrl = '../../components/navigationBar/navbar.html';
+    $scope.footerUrl = '../../components/footer/footer.html';
     $scope.isIgnoreNavBar = true;
     $scope.isNavOpened = false;
 
