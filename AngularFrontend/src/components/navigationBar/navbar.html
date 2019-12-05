@@ -1,33 +1,72 @@
 <div id="topNav" class="navbar row">
-  <a class="navbar-brand" href="#" ng-click="openNav()"><img class="logo d-inline-block" src="assets/image/logo.svg" alt=""></a>
+  <a class="navbar-brand" ui-sref="main.home" >
+    <img class="logo d-inline-block" ng-src="{{logoUrl}}" alt=""/>
+  </a>
   <div class="hamburgerIcon" ng-click="toggleMenu()">
     <svg class="hamburgerSvg" viewBox="0 0 800 600">
-      <path class="hamburgerPath hamburgerMain"
-        d="M300,220 C300,220 520,220 540,220 C740,220 640,540 520,420 C440,340 300,200 300,200" id="top"></path>
-      <path class="hamburgerPath hamburgerMain" d="M300,320 L540,320" id="middle"></path>
-      <path class="hamburgerPath hamburgerMain"
-        d="M300,210 C300,210 520,210 540,210 C740,210 640,530 520,410 C440,330 300,190 300,190" id="bottom"
-        transform="translate(480, 320) scale(1, -1) translate(-480, -318) "></path>
+      <path
+        class="hamburgerPath hamburgerMain"
+        ng-style="topNavStyle"
+        d="M300,220 C300,220 520,220 540,220 C740,220 640,540 520,420 C440,340 300,200 300,200"
+        id="top"
+      ></path>
+      <path
+        class="hamburgerPath hamburgerMain"
+        ng-style="topNavStyle"
+        d="M300,320 L540,320"
+        id="middle"
+      ></path>
+      <path
+        class="hamburgerPath hamburgerMain"
+        ng-style="topNavStyle"
+        d="M300,210 C300,210 520,210 540,210 C740,210 640,530 520,410 C440,330 300,190 300,190"
+        id="bottom"
+        transform="translate(480, 320) scale(1, -1) translate(-480, -318) "
+      ></path>
     </svg>
   </div>
 
   <div class="backdrop" ng-click="toggleMenu()"></div>
   <div id="mySidenav" class="sidenav">
     <div class="hamburgerContainer">
-      <div id="navHamburger" class="hamburgerIcon text-right" ng-click="toggleMenu()">
+      <div
+        id="navHamburger"
+        class="hamburgerIcon text-right"
+        ng-click="toggleMenu()"
+      >
         <svg class="hamburgerSvg" viewBox="0 0 800 600">
-          <path class="hamburgerPath"
-            d="M300,220 C300,220 520,220 540,220 C740,220 640,540 520,420 C440,340 300,200 300,200" id="top"></path>
+          <path
+            class="hamburgerPath"
+            d="M300,220 C300,220 520,220 540,220 C740,220 640,540 520,420 C440,340 300,200 300,200"
+            id="top"
+          ></path>
           <path class="hamburgerPath" d="M300,320 L540,320" id="middle"></path>
-          <path class="hamburgerPath"
-            d="M300,210 C300,210 520,210 540,210 C740,210 640,530 520,410 C440,330 300,190 300,190" id="bottom"
-            transform="translate(480, 320) scale(1, -1) translate(-480, -318) "></path>
+          <path
+            class="hamburgerPath"
+            d="M300,210 C300,210 520,210 540,210 C740,210 640,530 520,410 C440,330 300,190 300,190"
+            id="bottom"
+            transform="translate(480, 320) scale(1, -1) translate(-480, -318) "
+          ></path>
         </svg>
       </div>
     </div>
     <div class="sideNavContainer position-relative w-100">
-      <img src="assets/image/navflower.svg" id="navFlower" class="img-thumbnail border-0" alt="">
-      <a href="#">About</a>
+      <img
+        src="assets/image/navflower.svg"
+        id="navFlower"
+        class="img-thumbnail border-0"
+        alt=""
+      />
+      <div class="loginNavWrapper d-inline-block w100 text-right clearfix">
+        <div class="float-right clearfix"> 
+          <a ui-sref="main.login">Login</a> | <a href="#">Register</a><br>
+          <div class="position-relative shopping-cart-wrapper"><i class="fas fa-shopping-cart mt-2 shopping-cart-icon"></i><p class="my-cart-word mt-1">My Cart</p></div>
+        </div>
+        
+        
+      </div>
+      
+      <a class="mt-5" href="#">About</a>
       <a href="#">Services</a>
       <a href="#">Clients</a>
       <a href="#">Contact</a>

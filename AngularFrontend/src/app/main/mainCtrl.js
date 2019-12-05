@@ -1,7 +1,9 @@
-function MainCtrl($scope, $state, $auth, $rootScope, $http, $uibModal, userLogout, generalFunction) {
+function MainCtrl($scope, $state, $auth, $rootScope, $transitions, $http, $uibModal, userLogout, generalFunction) {
 
     $scope.navBarTemplateUrl = '../../components/navigationBar/navbar.html';
+    $scope.logoUrl = 'assets/image/logo.svg';
     $scope.footerUrl = '../../components/footer/footer.html';
+    $scope.topNavStyle = {stroke: '#FFFFFF'};
     $scope.isIgnoreNavBar = true;
     $scope.isNavOpened = false;
 
@@ -9,8 +11,6 @@ function MainCtrl($scope, $state, $auth, $rootScope, $http, $uibModal, userLogou
     $scope.openNav = openNav;
     $scope.closeNav = closeNav;
     $scope.toggleMenu = toggleMenu;
-
-
 
     function openNav() {
         console.log('opening');
@@ -111,20 +111,37 @@ function MainCtrl($scope, $state, $auth, $rootScope, $http, $uibModal, userLogou
 
     $scope.$on('ignoreNavbarActionChanged', function (event, yesOrNo) {
         $scope.isIgnoreNavBar = yesOrNo;
-
+        console.log('awwwww ' + yesOrNo);
     });
 
     $scope.$on('hamburgerColorChanged', function (event, color) {
-        $('.hamburgerMain').css('stroke', color + ' !important');
+        if (color == 'white') {
+            $scope.topNavStyle = {stroke: '#FFFFFF'};
+            $scope.logoUrl = 'assets/image/logo.svg';
+        } else {
+            $scope.topNavStyle = {stroke: color};
+            $scope.logoUrl = 'assets/image/dark-logo.svg';
+        }
+        
     });
 
+    $transitions.onSuccess({}, function() {
+        console.log('transition done');
+        $scope.isNavOpened = $(".hamburgerIcon").hasClass("cross");
 
+        if(!!$scope.isNavOpened){
+            closeNav();
+            $(".hamburgerIcon").toggleClass("cross");
+        }
+        
+    });
+ 
 
 
 }
 
 MainCtrl.$inject = [
-    '$scope', '$state', '$auth', '$rootScope', '$http', '$uibModal', 'userLogout', 'generalFunction'
+    '$scope', '$state', '$auth', '$rootScope', '$transitions', '$http', '$uibModal', 'userLogout', 'generalFunction'
 ];
 
 angular.module('cannis')
