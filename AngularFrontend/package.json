@@ -30,7 +30,8 @@
     "satellizer": "^0.15.5",
     "slick-carousel": "^1.8.1",
     "sweetalert": "^2.1.2",
-    "sweetalert2": "^8.18.5"
+    "sweetalert2": "^8.18.5",
+    "velocity-animate": "^1.5.2"
   },
   "devDependencies": {
     "autoprefixer": "^9.6.5",

@@ -1,7 +1,8 @@
-<div class="container-fluid position-relative">
+<div class="container-fluid position-relative min-vh-100">
     <div ng-include="navBarTemplateUrl"></div>
     <div ng-class="{'ignoreNavBar': isIgnoreNavBar}">
-        <div ui-view></div>
+        <div ui-view class="big-container"></div>
         <div ng-include="footerUrl"></div>
     </div>
+    
 </div>
