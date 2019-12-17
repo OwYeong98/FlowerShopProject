@@ -3,9 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use \App\CannisProject\Models\UserModel;
 
-class CheckAdminPrivilege
+class CheckEmailVerified
 {
     /**
      * Handle an incoming request.
@@ -19,7 +18,7 @@ class CheckAdminPrivilege
         $user= UserModel::find($request->user()->id);
 
         //if user is admin let them proceed to the request
-        if($user->isAdmin == true){
+        if($user->email_verified_at != null){
             return $next($request);
         }else{
             //respond with unauthorized
@@ -27,7 +26,7 @@ class CheckAdminPrivilege
                 'code' => 'Unauthorized',
                 'http_code' => '401',
                 'content' => [
-                    'error' => 'You are not an Admin!'
+                    'error' => 'Please Verify your email first!'
                 ]
             ];
 

@@ -20,6 +20,7 @@ class CreateFlowerBouquets extends Migration
             $table->string('desc',600);
             $table->decimal('price',8,2);
             $table->text('imageUrl');
+            $table->string('category',200);
         });
     }
 
