@@ -37,5 +37,8 @@
 	"./node_modules/satellizer/dist/satellizer.min.js",
 	"./node_modules/slick-carousel/slick/slick.min.js",
 	"./node_modules/velocity-animate/velocity.min.js",
-	"./node_modules/velocity-animate/velocity.ui.min.js"
+	"./node_modules/velocity-animate/velocity.ui.min.js",
+	"./node_modules/intl-tel-input/build/js/intlTelInput.min.js",
+	"./node_modules/ng-pattern-restrict/src/ng-pattern-restrict.min.js",
+	"./node_modules/jquery.alphanum/jquery.alphanum.js"
 ]

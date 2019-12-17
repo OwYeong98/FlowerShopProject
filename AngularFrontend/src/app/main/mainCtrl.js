@@ -13,7 +13,6 @@ function MainCtrl($scope, $state, $auth, $rootScope, $transitions, $http, $uibMo
     $scope.toggleMenu = toggleMenu;
 
     function openNav() {
-        console.log('opening');
         $scope.isNavOpened = true;
 
         $("#mySidenav").css("width", "300px");
@@ -27,7 +26,6 @@ function MainCtrl($scope, $state, $auth, $rootScope, $transitions, $http, $uibMo
 
     function closeNav() {
         $scope.isNavOpened = false;
-        console.log('closing');
         $("#mySidenav").css("width", "350px");
         setTimeout(function () {
             $("#mySidenav").css("width", "0");
@@ -54,7 +52,6 @@ function MainCtrl($scope, $state, $auth, $rootScope, $transitions, $http, $uibMo
     }
 
     function checkHamburgerIcon() {
-        console.log('isNavOpened ' + $scope.isNavOpened);
         if ($(this).scrollTop() >= 0 && $scope.isNavOpened == true) {
             $('#navHamburger').show();
         } else {
@@ -63,8 +60,6 @@ function MainCtrl($scope, $state, $auth, $rootScope, $transitions, $http, $uibMo
     }
 
     function animateCannisFlowerAndHamper() {
-        console.log("removing class go");
-
 
         setTimeout(function () {
             $(".welcome-word").css("opacity", "1");
@@ -72,7 +67,6 @@ function MainCtrl($scope, $state, $auth, $rootScope, $transitions, $http, $uibMo
         }, 500);
 
         setTimeout(function () {
-            console.log("adding class go");
             $('#introName').addClass('go');
         }, 1000);
 

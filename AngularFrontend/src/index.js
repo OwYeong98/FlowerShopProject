@@ -13,6 +13,7 @@ angular
     "ui.utils",
     "angular-loading-bar",
     "satellizer",
+    "ngPatternRestrict",
     "cannis.services.users"
   ])
   .config(function(
