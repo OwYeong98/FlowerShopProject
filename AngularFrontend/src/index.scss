@@ -41,12 +41,49 @@ $color-primary-green: #2f6045;
 $color-primary-green-contrast: #00885b;
 $color-primary-green-light: #72af8c;
 
+/* Default font style section
+ * Used for some default style to minimize the use of custom class
+ * 
+*/
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.cannis-color-normal {
+  color: $color-primary-blue;
+}
+
+.cannis-font-contrast {
+  font-family: $font-latin-regular;
+}
+
+.cannis-font-normal {
+  font-family: $font-quicksand-book;
+}
+
+.cannis-size-normal {
+  @include font-size(1rem !important);
+}
+
+.cannis-size-contrast {
+  @include font-size(1.5rem !important);
+}
+
+.cannis-size-extra-contrast {
+  @include font-size(2.5rem !important);
+}
+/*
+ * Custom class declaration section
+ * Used to specify a element style 
+ *
+*/
+
 body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
   position: relative;
-  color: $color-primary-blue;//default color
+  color: $color-primary-blue; //default color
   font-family: $font-quicksand-book;
 }
 
@@ -757,7 +794,7 @@ figure.product-category.hover figcaption h3 {
 }
 
 .login-form {
-  width: 50%;
+  width: 100%;
   max-width: 600px;
   display: inline-block;
   text-align: left;
@@ -798,6 +835,7 @@ figure.product-category.hover figcaption h3 {
   fill: rgba(10, 10, 10, 0);
   stroke: $color-primary-dark-blue;
   stroke-width: 3.5;
+  background: none;
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-miterlimit: 10;
@@ -805,6 +843,20 @@ figure.product-category.hover figcaption h3 {
   stroke-dashoffset: 300;
   -webkit-animation: dash 3s 0.3s linear forwards;
   animation: dash 3s 0.3s linear forwards;
+}
+
+#login .password-icon .email-path {
+  fill: rgba(10, 10, 10, 0);
+  stroke: $color-primary-dark-blue;
+  stroke-width: 1;
+  background: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-miterlimit: 10;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  -webkit-animation: dash 3s 1s linear forwards;
+  animation: dash 3s 1s linear forwards;
 }
 
 #login .user-icon .user-path {
@@ -825,37 +877,37 @@ figure.product-category.hover figcaption h3 {
 #login button:focus {
   outline: none;
 }
-#login input:focus::placeholder{
+#login input:focus::placeholder {
   opacity: 0;
 }
 
 #username_input::placeholder {
   color: $color-grey;
-  -webkit-transition: opacity 0.3s linear; 
+  -webkit-transition: opacity 0.3s linear;
 }
 #username_input::-webkit-input-placeholder {
   color: $color-grey;
-  -webkit-transition: opacity 0.3s linear; 
+  -webkit-transition: opacity 0.3s linear;
 }
 
 #username_input::-moz-placeholder {
   color: $color-grey;
-  -webkit-transition: opacity 0.3s linear; 
+  -webkit-transition: opacity 0.3s linear;
 }
 
 #password_input::placeholder {
   color: $color-grey;
-  -webkit-transition: opacity 0.3s linear; 
+  -webkit-transition: opacity 0.3s linear;
 }
 
 #password_input::-webkit-input-placeholder {
   color: $color-grey;
-  -webkit-transition: opacity 0.3s linear; 
+  -webkit-transition: opacity 0.3s linear;
 }
 
 #password_input::-moz-placeholder {
   color: $color-grey;
-  -webkit-transition: opacity 0.3s linear; 
+  -webkit-transition: opacity 0.3s linear;
 }
 
 #login .call-to-action {
@@ -893,7 +945,8 @@ figure.product-category.hover figcaption h3 {
 #login p {
   display: inline-block;
   width: 100%;
-  @include font-size(0.8rem !important);
+  margin-top: 10px;
+  @include font-size(1rem !important);
   color: $color-primary-blue;
   /*background-color: yellow;*/
 }
@@ -908,7 +961,207 @@ figure.product-category.hover figcaption h3 {
   cursor: pointer;
 }
 
+#register {
+  width: 100%;
+  padding: 50px 20px;
+  height: 500px;
+  text-align: center;
+}
 
+.register-form {
+  width: 100%;
+  max-width: 600px;
+  display: inline-block;
+  text-align: left;
+  margin-top: 100px;
+}
+
+.register-field {
+  margin-bottom: 10px;
+  position: relative;
+  display: block;
+  opacity: 0;
+  height: 50px;
+  border-bottom: 1px solid $color-grey;
+}
+
+#register h1 {
+  text-align: center;
+}
+
+#register .row {
+  display: none;
+}
+
+#register .username-row {
+  position: relative;
+  height: 50px;
+  border-bottom: 1px solid $color-grey;
+  opacity: 0;
+  display: block;
+  margin-bottom: 10px;
+}
+
+#register .password-row {
+  position: relative;
+  display: block;
+  opacity: 0;
+  height: 50px;
+  border-bottom: 1px solid $color-grey;
+}
+
+#register .password-icon,
+#register .user-icon {
+  margin: 5px;
+  margin-right: 18px;
+}
+
+#register .password-icon .key-path,
+#register .user-icon .user-path {
+  fill: rgba(10, 10, 10, 0);
+  stroke: $color-primary-dark-blue;
+  stroke-width: 3.5;
+  background: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-miterlimit: 10;
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
+  -webkit-animation: dash 3s 0.3s linear forwards;
+  animation: dash 3s 0.3s linear forwards;
+}
+
+#register .password-icon .email-path {
+  fill: rgba(10, 10, 10, 0);
+  stroke: $color-primary-dark-blue;
+  stroke-width: 1;
+  background: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-miterlimit: 10;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  -webkit-animation: dash 3s 1s linear forwards;
+  animation: dash 3s 1s linear forwards;
+}
+
+#register .user-icon .user-path {
+  -webkit-animation: dash 3s 0.8s linear forwards;
+  animation: dash 3s 0.8s linear forwards;
+}
+
+.cannis_input {
+  position: absolute;
+  width: calc(100% - 53px);
+  height: 30px;
+  margin: 5px 0;
+  background: transparent;
+  border: none;
+}
+
+#register button:focus {
+  outline: none;
+}
+.cannis_input:focus {
+  outline: none;
+}
+.cannis_input:focus::placeholder {
+  opacity: 0;
+}
+
+.cannis_input::placeholder {
+  color: $color-grey;
+  -webkit-transition: opacity 0.3s linear;
+}
+.cannis_input::-webkit-input-placeholder {
+  color: $color-grey;
+  -webkit-transition: opacity 0.3s linear;
+}
+
+.cannis_input::-moz-placeholder {
+  color: $color-grey;
+  -webkit-transition: opacity 0.3s linear;
+}
+
+#register .call-to-action {
+  margin: 60px 0;
+  height: 130px;
+  width: 100%;
+  text-align: center;
+}
+
+#register button {
+  width: 100%;
+  max-width: 600px;
+  height: 40px;
+  padding: 0;
+  font-weight: 700;
+  color: $color-white;
+  background-color: #22c08a;
+  border: none;
+  border-radius: 20px;
+  transition: background-color 0.1s ease-in-out;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+#register button:hover {
+  background-color: #26d69a;
+}
+
+#register button:active {
+  background-color: #1eaa7a;
+}
+
+#register p {
+  display: inline-block;
+  width: 100%;
+  @include font-size(0.8rem !important);
+  color: $color-primary-blue;
+  /*background-color: yellow;*/
+}
+
+#register p a {
+  color: rgb(90, 140, 235);
+}
+
+#register label,
+#register p a:hover {
+  -webkit-cursor: pointer;
+  cursor: pointer;
+}
+
+.phone-request {
+  font-family: $font-latin-bold;
+  @include font-size(1rem !important);
+  color: cornflowerblue;
+  position: absolute;
+  right: 0;
+  margin: 7px;
+}
+
+/** Section: Plugin Style Override
+*   Used to override css styling for npm plugin modules
+*
+*/
+.iti {
+  width: 95%;
+}
+.iti__flag {
+  background-image: url("../node_modules/intl-tel-input/build/img/flags.png");
+} // phone plugin override
+
+.iti__selected-flag {
+  outline: none;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .iti__flag {
+    background-image: url("../node_modules/intl-tel-input/build/img/flags@2x.png");
+  }
+}
 
 /**
 *   SECTION: @media custom fix Section
