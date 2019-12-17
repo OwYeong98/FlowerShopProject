@@ -159,6 +159,133 @@ paths:
                         items:
                           type: string
                           example: Email already in use!
+  /user/edit:
+    post:
+      tags:
+      - User
+      summary: Edit account
+      description: Must be logged in to edit
+      parameters:
+        - name: name
+          in: query
+          required: true
+          description: Name of the user 
+          schema:
+            type: string
+        - name: email
+          in: query
+          required: true
+          description: Email of the user 
+          schema:
+            type: string
+        - name: password
+          in: query
+          required: true
+          description: Password of the user 
+          schema:
+            type: string
+        - name: phoneNo
+          in: query
+          required: true
+          description: phone number of the user 
+          schema:
+            type: string
+        - name: birthDate
+          in: query
+          required: true
+          description: Email of the user 
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Successful edited
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  code:
+                    type: string
+                    example: 200
+                  http_code:
+                    type: string
+                    example: OK
+                  content:
+                    type: "object"
+                    properties:
+                      message:
+                        type: string
+                        example: OK
+        '403':
+          description: Error edit
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  code:
+                    type: string
+                    example: CODE_FORBIDDEN
+                  http_code:
+                    type: string
+                    example: 403
+                  content:
+                    type: "object"
+                    properties:
+                      error:
+                        type: array
+                        items:
+                          type: string
+                          example: Email already in use!
+      security:
+        - bearerAuth: [] 
+  /user/profile:
+    post:
+      tags:
+      - User
+      summary: get profile data
+      description: Must be logged in to see profile
+      responses:
+        '200':
+          description: Successful edited
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  code:
+                    type: string
+                    example: 200
+                  http_code:
+                    type: string
+                    example: OK
+                  content:
+                    type: "object"
+                    properties:
+                      message:
+                        type: string
+                        example: OK
+                      data:
+                        type: "object"
+                        properties:
+                          name:
+                            type: string
+                            example: John Doe
+                          email:
+                            type: string
+                            example: john@example.com
+                          phone_no:
+                            type: string
+                            example: 01121158352
+                          birth_date:
+                            type: string
+                            example: 1998-01-25
+                          email_verified_at:
+                            type: string
+                            example: "1998-01-25"
+      security:
+        - bearerAuth: [] 
  
   /user/logout:
     post:
@@ -188,7 +315,121 @@ paths:
                         example: OK
       security:
         - bearerAuth: []     
-      
+  /user/userlist:
+    get:
+      tags:
+      - User
+      summary: get all User list with pagination
+      description:  Must be admin
+      parameters:
+        - name: perpage
+          in: path
+          required: true
+          description: how much user u want for 1 page
+          schema:
+            type: integer
+        - name: sortbys
+          required: false
+          in: query
+          description: Do you want to sort the list follow format column:sortby and use | to seperate if you have more(Note behind have higher priority)
+          schema:
+            type: string
+            example: name:asc|id:desc
+      responses:
+        '200':
+            description: Successful get userlist
+            content:
+              application/json:
+                schema:
+                  type: "object"
+                  properties: 
+                    code:
+                      type: string
+                      example: 200
+                    http_code:
+                      type: string
+                      example: OK
+                    content:
+                      type: "object"
+                      properties:
+                        message:
+                          type: string
+                          example: OK
+                        data:
+                          type: "object"
+                          properties:
+                            last_page_url:
+                              type: string
+                              example: http://localhost:8000/api/user/userlist?page=1&perpage=3
+                            next_page_url:
+                              type: string
+                              example: http://localhost:8000/api/user/userlist?page=2&perpage=3
+                            prev_page_url:
+                              type: string
+                              example: null
+                            dataList:
+                              type: array
+                              items:
+                                type: "object"
+                                properties:
+                                  name:
+                                    type: string
+                                    example: John Doe
+                                  email:
+                                    type: string
+                                    example: john@example.com
+                                  phone_no:
+                                    type: string
+                                    example: 01121158352
+                                  birth_date:
+                                    type: string
+                                    example: 1998-01-25
+                                  email_verified_at:
+                                    type: string
+                                    example: "1998-01-25"
+                                
+        '403':
+          description: error of parameter
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  code:
+                    type: string
+                    example: CODE_FORBIDDEN
+                  http_code:
+                    type: string
+                    example: 403
+                  content:
+                    type: "object"
+                    properties:
+                      error:
+                        type: array
+                        items:
+                          type: string
+                        example: [perpage must be integer]
+        '401':
+          description: Unauthorized! you are not admin
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  code:
+                    type: string
+                    example: CODE_UNAUTHORIZED
+                  http_code:
+                    type: string
+                    example: 401
+                  content:
+                    type: "object"
+                    properties:
+                      error:
+                        type: string
+                        example: You are not an admin
+      security:
+        - bearerAuth: []  
   /user/email/verify/{id}:
     get:
       tags:
@@ -613,6 +854,12 @@ paths:
           schema:
             type: string
             format: binary
+        - name: category
+          in: query
+          required: true
+          description: category
+          schema:
+            type: string
         - name: flowerList
           in: query
           required: true

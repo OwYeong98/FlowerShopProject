@@ -114,6 +114,7 @@ class FlowerBouquetController extends ApiController
             'desc' => 'required|min:30|max:600',
             'price' => 'required|Numeric',
             'image' => 'required|image',
+            'category' => 'required|in:WeddingFlower,ValentineFlower,GraduateFlower,FuneralFlower,FreshFlower,VisitingFlower',
             'flowerList' => 'required|array',
             'flowerList.*' => 'required|distinct|exists:flowers,id',
         ]);
@@ -151,6 +152,7 @@ class FlowerBouquetController extends ApiController
             $newFlowerBouquet->desc = $request->input('desc');
             $newFlowerBouquet->price = $request->input('price');
             $newFlowerBouquet->imageUrl = $imageFullPath;
+            $newFlowerBouquet->category = $request->input('category');
 
             $newFlowerBouquet->save();
 
