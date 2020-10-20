@@ -24,27 +24,28 @@ class CheckAdminPrivilege
         }else{
             //respond with unauthorized
             $jsonContent = [
-                'code' => 'Unauthorized',
-                'http_code' => '401',
+                'code' => 'Forbidden',
+                'http_code' => '403',
                 'content' => [
                     'error' => 'You are not an Admin!'
                 ]
             ];
 
             //revoke all user token
-            $userTokens = $user->tokens;
+            
+            $userTokens = $request->user()->tokens;
             foreach($userTokens as $token) {
                 $token->revoke();
             }
 
             //generate new token
-            $newToken= $user->createToken('personal')->accessToken;
+            $newToken= $request->user()->createToken('personal')->accessToken;
 
             $header = [
                 "Authorization" => $newToken
             ];
 
-            $response = response($jsonContent,401,$header);
+            $response = response($jsonContent,403,$header);
 
             return $response;
         }

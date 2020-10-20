@@ -3,9 +3,14 @@ angular
     .factory('httpInterceptor', function ($q, $rootScope, $injector){
         return {
             // optional method
-            'request': function(config) {
+            'request': function(request) {
+              var authService = $injector.get('$auth');
+ 
+              request.headers['Accept'] = 'application/json';
+              request.headers['Authorization'] = "Bearer "+authService.getToken();
+          
               // do something on success
-              return config;
+              return request;
             },
         
             // optional method
@@ -36,7 +41,7 @@ angular
             // optional method
            'responseError': function(rejection) {
               // do something on error
-              var auth = $injector.get('$auth');
+              var authService = $injector.get('$auth');
               
               if(rejection.status === 409){
                   //reject another login was made
@@ -45,13 +50,14 @@ angular
               if(rejection.status === 401){
                 message = 'session is expire';
                 
+                //tell satelizzer to remove token as the token is already expired
+                authService.logout();
 
               }
 
               if(rejection.status === 503){
                   //$injector.get('state').go('')
 
-                  auth.logout();
               }
               return $q.reject(rejection);
             }

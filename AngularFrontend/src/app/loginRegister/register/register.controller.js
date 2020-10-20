@@ -1,12 +1,111 @@
 'use strict';
 
-function registerCtrl($scope, $auth, $state, $rootScope, $stateParams, endPointConstant) {
+function registerCtrl($scope, $auth, $state, $rootScope, $stateParams, endPointConstant,userAPIService) {
     $scope.$emit('ignoreNavbarActionChanged', false);
     $scope.$emit('hamburgerColorChanged', '#304563');
     console.log("agga");
 
     $scope.redirectToLogin = redirectToLogin;
+    $scope.registerAccount = registerAccount;
     
+    function registerAccount() {
+        var username = $scope.username || "";
+        var password = $scope.password || "";
+        var retypePassword = $scope.retypePassword || "";
+        var email = $scope.emailAdd || "";
+        var dateOfBirth = $scope.dateOfBirth || "";
+        var phoneNo = document.querySelector("#registerPhoneNum").value || "";
+        
+        var usernameError = [];
+        pushToArrayIfNotEmpty(usernameError,isEmpty("Username",username));
+
+        var passwordError = [];
+        pushToArrayIfNotEmpty(passwordError,isEmpty("Password",password));
+        pushToArrayIfNotEmpty(passwordError,isMatchRegex(password,/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[#$@!%&*?])[0-9a-zA-Z\d#$@!%&*?]{8,30}$/,"Password must contain uppercase,lowercase,specialchar,number and between 8 to 30 char."));
+
+
+        var retypePasswordError = [];
+        if(password !== retypePassword){
+            retypePasswordError.push("Confirm password does not match with password!");
+        }
+
+        var emailError = [];
+        pushToArrayIfNotEmpty(emailError,isEmpty("Email",email));
+        pushToArrayIfNotEmpty(emailError,isMatchRegex(email,/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,"Email not valid!"));
+
+        var dateOfBirthError = [];
+        pushToArrayIfNotEmpty(dateOfBirthError,isEmpty("Date Of Birth",dateOfBirth));
+
+        var phoneNoError = [];
+        pushToArrayIfNotEmpty(phoneNoError,isEmpty("Phone No",phoneNo));
+        pushToArrayIfNotEmpty(phoneNoError,isNumber("Phone No",phoneNo));
+
+        var allErrorArray = [usernameError,passwordError,retypePasswordError,emailError,dateOfBirthError,phoneNoError];
+        var allError = [];
+        for(x of allErrorArray){
+            allError = allError.concat(x);
+        }
+       
+        console.log(allError.length);
+        $scope.usernameError = usernameError;
+        $scope.passwordError = passwordError;
+        $scope.retypePasswordError = retypePasswordError;
+        $scope.emailError = emailError;
+        $scope.dateOfBirthError = dateOfBirthError;
+        $scope.phoneNoError = phoneNoError;
+        if(allError.length <= 0){
+            console.log("OK");
+            var x = userAPIService.register({name: username,email:email,password:password,phoneNo:phoneNo,birthDate:dateOfBirth}).$promise.then(function(){
+                Swal.fire({
+                    type: 'success',
+                    title: 'Registered Successfully!',
+                    text: 'Please Check your Inbbx to verify your email.'
+                  })
+              }, function(errResponse) {
+                
+             });
+        }
+
+    }
+
+    function pushToArrayIfNotEmpty(array,value){
+        var isEmpty = value.length <=0;
+        
+        if(!isEmpty){
+            array.push(value);
+        }
+    }
+
+    function isEmpty(name,value){
+        var isEmpty = value.length <=0;
+
+        if(isEmpty){
+            return name + " cannot be empty!";
+        }else{
+            return "";
+        }
+    }
+
+    function isMatchRegex(value,regex,errorMsg){
+
+        if(value.match(regex) !== null){
+
+            return "";
+        }else{
+            return errorMsg;
+        }
+    }
+
+    function isNumber(name,value){
+        var isNumber = !isNaN(parseFloat(value));
+        
+        if(!isNumber){
+            return name + " must be integer!";
+        }else{
+            return "";
+        }
+    }
+
     function redirectToLogin() {
         $(".redirect-login").velocity("fadeOut",1250);
         $("#register").velocity("transition.slideRightOut", {
@@ -73,7 +172,7 @@ function registerCtrl($scope, $auth, $state, $rootScope, $stateParams, endPointC
 
 }
 
-registerCtrl.$inject = ['$scope', '$auth', '$state', '$rootScope', '$stateParams', 'endPointConstant'];
+registerCtrl.$inject = ['$scope', '$auth', '$state', '$rootScope', '$stateParams', 'endPointConstant','userAPIService'];
 
 angular.module('cannis')
     .controller('registerCtrl', registerCtrl);

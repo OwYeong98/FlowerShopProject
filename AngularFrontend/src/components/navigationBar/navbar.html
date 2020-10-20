@@ -58,8 +58,8 @@
         alt=""
       />
       <div class="loginNavWrapper d-inline-block w100 text-right clearfix">
-        <div class="float-right clearfix"> 
-          <a ui-sref="main.login">Login</a> | <a ui-sref="main.register">Register</a><br>
+        <div class="float-right clearfix">
+          <a ui-sref="main.login" ng-if="!isLoggedIn()">Login</a> <a ui-sref="main.dashboard" ng-if="isLoggedIn()">Dashboard</a> | <a ui-sref="main.register" ng-if="!isLoggedIn()">Register</a> <a ui-sref="main.logout" ng-if="isLoggedIn()">Logout</a><br>
           <div class="position-relative shopping-cart-wrapper"><i class="fas fa-shopping-cart mt-2 shopping-cart-icon"></i><p class="my-cart-word mt-1">My Cart</p></div>
         </div>
         

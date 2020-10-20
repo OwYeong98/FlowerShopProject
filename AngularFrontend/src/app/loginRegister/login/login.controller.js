@@ -11,7 +11,6 @@ function loginCtrl($scope, $auth, $state, $rootScope, $stateParams, endPointCons
   $scope.username = username;
   $scope.password = password;
   $scope.submit = submit;
-  $scope.logout = logout;
   $scope.redirectToRegister = redirectToRegister;
 
   function slideUpIn() {
@@ -61,23 +60,19 @@ function loginCtrl($scope, $auth, $state, $rootScope, $stateParams, endPointCons
       .login({ email: $scope.username, password: $scope.password })
       .then(function(response) {
         //success request will come here
-
+        
         $scope.token = $auth.getToken();
+        
+        $state.go("main.dashboard");
       })
       .catch(function(error) {
         //error request respond come here
+        Swal.fire({
+          type: 'error',
+          title: 'Invalid Credential',
+          text: 'Username or password is wrong!'
+        });
       });
-  }
-
-  function logout() {
-    console.log("loggin out");
-    userLogout.post(
-      {},
-      function(resources) {
-        console.log("successfully loggedout");
-      },
-      function(error) {}
-    );
   }
 
   function redirectToRegister() {

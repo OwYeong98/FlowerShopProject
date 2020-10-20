@@ -1,4 +1,4 @@
-function MainCtrl($scope, $state, $auth, $rootScope, $transitions, $http, $uibModal, userLogout, generalFunction) {
+function MainCtrl($scope, $state, $auth, $rootScope, $transitions, $http, $uibModal, generalFunction) {
 
     $scope.navBarTemplateUrl = '../../components/navigationBar/navbar.html';
     $scope.logoUrl = 'assets/image/logo.svg';
@@ -6,6 +6,10 @@ function MainCtrl($scope, $state, $auth, $rootScope, $transitions, $http, $uibMo
     $scope.topNavStyle = {stroke: '#FFFFFF'};
     $scope.isIgnoreNavBar = true;
     $scope.isNavOpened = false;
+    
+    $scope.isLoggedIn  = function (){
+        return $auth.isAuthenticated();
+    }
 
 
     $scope.openNav = openNav;
@@ -135,7 +139,7 @@ function MainCtrl($scope, $state, $auth, $rootScope, $transitions, $http, $uibMo
 }
 
 MainCtrl.$inject = [
-    '$scope', '$state', '$auth', '$rootScope', '$transitions', '$http', '$uibModal', 'userLogout', 'generalFunction'
+    '$scope', '$state', '$auth', '$rootScope', '$transitions', '$http', '$uibModal', 'generalFunction'
 ];
 
 angular.module('cannis')

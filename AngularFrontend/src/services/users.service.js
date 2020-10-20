@@ -1,14 +1,22 @@
 'use strict';
 
 angular.module('cannis.services.users', ['ngResource'])
-    .factory('userLogout', function($resource, $filter, endPointConstant){
+    .factory('userAPIService', function($resource, $filter, endPointConstant){
         return $resource(
-            endPointConstant.apiUrls.logout,
+            "/Api",
             {
 
             },
             {
-                'post': {method: 'POST'}
+                logout: {
+                    url: endPointConstant.apiUrls.logout,
+                    method: 'POST'
+                },
+                register: {
+                    url: endPointConstant.apiUrls.register,
+                    method: 'POST',
+                    params: {name: "",email:"",password:"",phoneNo:"",birthDate:""}
+                }
             }
 
         );
