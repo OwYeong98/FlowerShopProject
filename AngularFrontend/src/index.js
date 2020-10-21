@@ -14,7 +14,9 @@ angular
     "angular-loading-bar",
     "satellizer",
     "ngPatternRestrict",
-    "cannis.services.users"
+    "cannis.services.users",
+    "cannis.services.flowers",
+    "cannis.services.bouquets"
   ])
   .config(function(
     $stateProvider,

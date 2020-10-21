@@ -8,6 +8,8 @@ function hotDealCtrl(
   generalFunction,
   $timeout
 ) {
+  $scope.backendIp = endPointConstant.environmentUrl;
+
   $scope.nextPage = nextPage;
   $scope.previousPage = previousPage;
   $scope.calcDiscount = generalFunction.calcDiscount;

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Schema;
 use \App\CannisProject\Models\Flower;
+use Illuminate\Support\Facades\Log;
 use App\CannisProject\Transformers\FlowerTransformer;
 
 use function GuzzleHttp\json_encode;
@@ -30,7 +31,7 @@ class FlowerController extends ApiController
         if($validation->fails()){
             $errors = $validation->errors();
 
-            return $this->respondWithError($errors->all(),self::CODE_FORBIDDEN);
+            return $this->respondWithError($errors->all(),self::CODE_BAD_REQUEST);
         } else{
 
             $errors = array();
@@ -60,7 +61,7 @@ class FlowerController extends ApiController
             /************************* */
 
             if(count($errors)>0){
-                return $this->respondWithError($errors,self::CODE_FORBIDDEN);
+                return $this->respondWithError($errors,self::CODE_BAD_REQUEST);
             }else{
                 //empty query builder
                 $querybuilder = Flower::query();
@@ -119,10 +120,12 @@ class FlowerController extends ApiController
             'image' => 'required|image',
         ]);
 
+        Log::Debug($request->image);
+
         if($validation->fails()){
             $errors = $validation->errors();
 
-            return $this->respondWithError($errors->all(),self::CODE_FORBIDDEN);
+            return $this->respondWithError($errors->all(),self::CODE_BAD_REQUEST);
         } else{
             //save image
             $imageFile = $request->file('image');

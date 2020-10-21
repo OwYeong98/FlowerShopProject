@@ -1227,6 +1227,11 @@ figure.product-category.hover figcaption h3 {
   opacity: 0;
 }
 
+#dashboard .errorTextStyle{
+  color: red;
+  font-size: 14px;
+}
+
 .phone-request {
   font-family: $font-latin-bold;
   @include font-size(1rem !important);
