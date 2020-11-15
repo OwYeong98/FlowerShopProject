@@ -1,0 +1,98 @@
+<div class="container">
+    <div id="dashboard">
+      <h1 style="text-align: center;">Dashboard</h1>
+      <div class="dashboard-form">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active"  data-toggle="tab" ng-click="currentTab='AddFlower'">Add Flower</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" ng-click="currentTab='AddBouquet'">Add Bouquet</a>
+          </li>
+        </ul>
+
+        <div class="container-fluid" style="margin-top: 20px;" ng-show="currentTab==='AddFlower'">
+          <div class="input-title" >Flower Name</div>
+          
+          <div class="input-row" style="min-height: 40px;">
+            <input type="text" ng-model="flowerName" id="flowerName_input" class="form_input inputStyle"
+              placeholder="Flower Name"></input>
+          </div>
+          <span class="errorTextStyle" ng-if="flowerNameError.length>0">{{flowerNameError[0]}}</span>
+
+          <div class="input-title">Flower Desc</div>
+
+          <textarea class="form-control input-text-area-style mt-10" style="margin-top: 20px;" rows="5" id="comment" ng-model="flowerDesc"></textarea>
+          <span class="errorTextStyle" ng-if="flowerDescError.length>0">{{flowerDescError[0]}}</span>
+
+
+          <div class="input-title">Flower Image</div>
+          <div style="margin-top: 20px;">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Upload</span>
+              </div>
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" ng-model="flowerImageInput" id="inputFlowerImage" custom-select-ng-files>
+                <label class="custom-file-label" for="inputFlowerImage"><p >{{flowerImageInput[0].name}}</p></label>
+              </div>
+            </div>
+          </div>
+          <span class="errorTextStyle" ng-if="flowerImageError.length>0">{{flowerImageError[0]}}</span>
+
+          <input type="submit" ng-click="addFlower()" class="btn btn-outline-secondary btn-block" style="margin-top: 20px;"value="Add Flower"/>
+        </div>
+
+        <div class="container-fluid" style="margin-top: 20px;" ng-show="currentTab==='AddBouquet'">
+          <div class="input-title" >Bouquet Name</div>
+          
+          <div class="input-row" style="min-height: 40px;">
+            <input type="text" ng-model="bouquetName" id="bouquetName_input" class="form_input inputStyle"
+              placeholder="Bouquest Name"></input>
+          </div>
+          <span class="errorTextStyle" ng-if="bouquetNameError.length>0">{{bouquetNameError[0]}}</span>
+
+          <div class="input-title">Bouquet Desc</div>
+
+          <textarea class="form-control input-text-area-style mt-10" ng-model="bouquetDesc" style="margin-top: 20px;" rows="5" id="comment" ></textarea>
+          <span class="errorTextStyle" ng-if="bouquetDescError.length>0">{{bouquetDescError[0]}}</span>
+
+          <div class="input-title">Price</div>
+          <input ng-model="bouquetPrice" class="form-control" type="number" id="example-number-input">
+          <span class="errorTextStyle" ng-if="bouquetPriceError.length>0">{{bouquetPriceError[0]}}</span>
+
+          <div class="input-title">Bouquet Image</div>
+          <div style="margin-top: 20px;">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Upload</span>
+              </div>
+              <div class="custom-file">
+                <input type="file" ng-model="bouquetImageInput" class="custom-file-input" id="inputBouquetImage" custom-select-ng-files >
+                <label class="custom-file-label" for="inputBouquetImage"><p >{{bouquetImageInput[0].name}}</p></label>
+              </div>
+            </div>
+          </div>
+          <span class="errorTextStyle" ng-if="bouquetImageError.length>0">{{bouquetImageError[0]}}</span>
+
+          <div class="input-title">Bouquet Category</div>
+          <select ng-model="bouquetCategory" class="form-control">
+            <option ng-repeat="bouquetCat in bouquetCategoryList">{{bouquetCat}}</option>
+          </select>
+          <span class="errorTextStyle" ng-if="bouquetCategoryError.length>0">{{bouquetCategoryError[0]}}</span>
+
+          <div class="input-title">Flower Used In Bouquest</div>
+          <select ng-model="bouquetFlowerUsed" id="Select_FlowerUsedList" data-width="100%" multiple>
+            <option ng-repeat="flower in flowerList" ng-init="$last && finished()" ng-value="flower.id">{{flower.flowerName}}</option>
+          </select>
+          <span class="errorTextStyle" ng-if="bouquetFlowerUsedError.length>0">{{bouquetFlowerUsedError[0]}}</span>
+
+
+          <input ng-click="addBouquet()" type="submit" class="btn btn-outline-secondary btn-block" style="margin-top: 20px;"value="Add Bouquet"/>
+
+        </div>
+
+
+      </div>
+    </div>
+  </div>

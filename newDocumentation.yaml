@@ -1,0 +1,942 @@
+openapi: 3.0.0
+components:
+  securitySchemes:
+    bearerAuth:            
+      type: http
+      scheme: bearer
+      bearerFormat: JWT  
+info:
+  title: Cannis Laravel Backend
+  description: This is a resful api documentation
+  version: 0.1.9
+servers:
+  - url: http://localhost:8000/api
+    description: local server
+tags:
+- name: "User"
+  description: "Function for user"
+- name: "Flower"
+  description: "All functions about flower"
+- name: "FlowerBouquet"
+  description: "All Function about Flower Bouquet"
+paths:
+  /user/login:
+    post:
+      tags:
+      - User
+      summary: Login function
+      description: Pass email and password to get authentication token
+      parameters:
+        - name: email
+          in: query
+          required: true
+          description: Email address 
+          schema:
+            type: string
+        - name: password
+          in: query
+          required: true
+          description: password 
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful login
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  code:
+                    type: string
+                    example: 200
+                  http_code:
+                    type: string
+                    example: OK
+                  content:
+                    type: "object"
+                    properties:
+                      message:
+                        type: string
+                        example: OK
+        '403':
+          description: Error logging in
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  code:
+                    type: string
+                    example: CODE_FORBIDDEN
+                  http_code:
+                    type: string
+                    example: 403
+                  content:
+                    type: "object"
+                    properties:
+                      error:
+                        type: array
+                        items:
+                          type: string
+            
+  /user/register:
+    post:
+      tags:
+      - User
+      summary: Register account
+      description: Register account
+      parameters:
+        - name: name
+          in: query
+          required: true
+          description: Name of the user 
+          schema:
+            type: string
+        - name: email
+          in: query
+          required: true
+          description: Email of the user 
+          schema:
+            type: string
+        - name: password
+          in: query
+          required: true
+          description: Password of the user 
+          schema:
+            type: string
+        - name: phoneNo
+          in: query
+          required: true
+          description: phone number of the user 
+          schema:
+            type: string
+        - name: birthDate
+          in: query
+          required: true
+          description: Email of the user 
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Successful registered
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  code:
+                    type: string
+                    example: 200
+                  http_code:
+                    type: string
+                    example: OK
+                  content:
+                    type: "object"
+                    properties:
+                      message:
+                        type: string
+                        example: OK
+        '403':
+          description: Error register
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  code:
+                    type: string
+                    example: CODE_FORBIDDEN
+                  http_code:
+                    type: string
+                    example: 403
+                  content:
+                    type: "object"
+                    properties:
+                      error:
+                        type: array
+                        items:
+                          type: string
+                          example: Email already in use!
+  /user/edit:
+    post:
+      tags:
+      - User
+      summary: Edit account
+      description: Must be logged in to edit
+      parameters:
+        - name: name
+          in: query
+          required: true
+          description: Name of the user 
+          schema:
+            type: string
+        - name: email
+          in: query
+          required: true
+          description: Email of the user 
+          schema:
+            type: string
+        - name: password
+          in: query
+          required: true
+          description: Password of the user 
+          schema:
+            type: string
+        - name: phoneNo
+          in: query
+          required: true
+          description: phone number of the user 
+          schema:
+            type: string
+        - name: birthDate
+          in: query
+          required: true
+          description: Email of the user 
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Successful edited
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  code:
+                    type: string
+                    example: 200
+                  http_code:
+                    type: string
+                    example: OK
+                  content:
+                    type: "object"
+                    properties:
+                      message:
+                        type: string
+                        example: OK
+        '403':
+          description: Error edit
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  code:
+                    type: string
+                    example: CODE_FORBIDDEN
+                  http_code:
+                    type: string
+                    example: 403
+                  content:
+                    type: "object"
+                    properties:
+                      error:
+                        type: array
+                        items:
+                          type: string
+                          example: Email already in use!
+      security:
+        - bearerAuth: [] 
+  /user/profile:
+    post:
+      tags:
+      - User
+      summary: get profile data
+      description: Must be logged in to see profile
+      responses:
+        '200':
+          description: Successful edited
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  code:
+                    type: string
+                    example: 200
+                  http_code:
+                    type: string
+                    example: OK
+                  content:
+                    type: "object"
+                    properties:
+                      message:
+                        type: string
+                        example: OK
+                      data:
+                        type: "object"
+                        properties:
+                          name:
+                            type: string
+                            example: John Doe
+                          email:
+                            type: string
+                            example: john@example.com
+                          phone_no:
+                            type: string
+                            example: 01121158352
+                          birth_date:
+                            type: string
+                            example: 1998-01-25
+                          email_verified_at:
+                            type: string
+                            example: "1998-01-25"
+      security:
+        - bearerAuth: [] 
+ 
+  /user/logout:
+    post:
+      tags:
+      - User
+      summary: Logout account
+      description:  Logout account
+      responses:
+        '200':
+          description: Successful registered
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  code:
+                    type: string
+                    example: 200
+                  http_code:
+                    type: string
+                    example: OK
+                  content:
+                    type: "object"
+                    properties:
+                      message:
+                        type: string
+                        example: OK
+      security:
+        - bearerAuth: []     
+  /user/userlist:
+    get:
+      tags:
+      - User
+      summary: get all User list with pagination
+      description:  Must be admin
+      parameters:
+        - name: perpage
+          in: path
+          required: true
+          description: how much user u want for 1 page
+          schema:
+            type: integer
+        - name: sortbys
+          required: false
+          in: query
+          description: Do you want to sort the list follow format column:sortby and use | to seperate if you have more(Note behind have higher priority)
+          schema:
+            type: string
+            example: name:asc|id:desc
+      responses:
+        '200':
+            description: Successful get userlist
+            content:
+              application/json:
+                schema:
+                  type: "object"
+                  properties: 
+                    code:
+                      type: string
+                      example: 200
+                    http_code:
+                      type: string
+                      example: OK
+                    content:
+                      type: "object"
+                      properties:
+                        message:
+                          type: string
+                          example: OK
+                        data:
+                          type: "object"
+                          properties:
+                            last_page_url:
+                              type: string
+                              example: http://localhost:8000/api/user/userlist?page=1&perpage=3
+                            next_page_url:
+                              type: string
+                              example: http://localhost:8000/api/user/userlist?page=2&perpage=3
+                            prev_page_url:
+                              type: string
+                              example: null
+                            dataList:
+                              type: array
+                              items:
+                                type: "object"
+                                properties:
+                                  name:
+                                    type: string
+                                    example: John Doe
+                                  email:
+                                    type: string
+                                    example: john@example.com
+                                  phone_no:
+                                    type: string
+                                    example: 01121158352
+                                  birth_date:
+                                    type: string
+                                    example: 1998-01-25
+                                  email_verified_at:
+                                    type: string
+                                    example: "1998-01-25"
+                                
+        '400':
+          description: error of parameter
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  code:
+                    type: string
+                    example: CODE_BAD_REQUEST
+                  http_code:
+                    type: string
+                    example: 400
+                  content:
+                    type: "object"
+                    properties:
+                      error:
+                        type: array
+                        items:
+                          type: string
+                        example: [perpage must be integer]
+        '403':
+          description: Unauthorized! you are not admin
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  code:
+                    type: string
+                    example: FORBIDDEN
+                  http_code:
+                    type: string
+                    example: 403
+                  content:
+                    type: "object"
+                    properties:
+                      error:
+                        type: string
+                        example: You are not an admin
+      security:
+        - bearerAuth: []  
+  /user/email/verify/{id}:
+    get:
+      tags:
+      - User
+      summary: Verify user account by link send to user email
+      description: Verify user account by link send to user email
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: id of the user
+          schema:
+            type: integer
+        - name: expire
+          in: query
+          required: true
+          description: expire generated by laravel temporarily signed route
+          schema:
+            type: string
+        - name: signature
+          in: query
+          required: true
+          description: signature generated by laravel signed route
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful verified email
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  code:
+                    type: string
+                    example: 200
+                  http_code:
+                    type: string
+                    example: OK
+                  content:
+                    type: "object"
+                    properties:
+                      message:
+                        type: string
+                        example: OK
+        '403':
+          description: Could not verify
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  code:
+                    type: string
+                    example: CODE_FORBIDDEN
+                  http_code:
+                    type: string
+                    example: 403
+                  content:
+                    type: "object"
+                    properties:
+                      error:
+                        type: array
+                        items:
+                          type: string
+                        example: [link expired]
+  /user/email/resend:
+    post:
+      tags:
+      - User
+      summary: resending verification email
+      description:  resending verification email
+      responses:
+        '200':
+            description: Successful resend email
+            content:
+              application/json:
+                schema:
+                  type: "object"
+                  properties: 
+                    code:
+                      type: string
+                      example: 200
+                    http_code:
+                      type: string
+                      example: OK
+                    content:
+                      type: "object"
+                      properties:
+                        message:
+                          type: string
+                          example: OK
+        '403':
+          description: Could not verify
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  code:
+                    type: string
+                    example: CODE_FORBIDDEN
+                  http_code:
+                    type: string
+                    example: 403
+                  content:
+                    type: "object"
+                    properties:
+                      error:
+                        type: array
+                        items:
+                          type: string
+                        example: [You already verify your email]
+      security:
+        - bearerAuth: []  
+        
+  /flower:
+    get:
+      tags:
+      - Flower
+      summary: get all flower list with pagination
+      description:  get all flower list with pagination
+      parameters:
+        - name: perpage
+          in: path
+          required: true
+          description: how much flower u want for 1 page
+          schema:
+            type: integer
+        - name: sortbys
+          required: false
+          in: query
+          description: Do you want to sort the list follow format column:sortby and use | to seperate if you have more(Note behind have higher priority)
+          schema:
+            type: string
+            example: name:asc|id:desc
+      responses:
+        '200':
+            description: Successful resend email
+            content:
+              application/json:
+                schema:
+                  type: "object"
+                  properties: 
+                    code:
+                      type: string
+                      example: 200
+                    http_code:
+                      type: string
+                      example: OK
+                    content:
+                      type: "object"
+                      properties:
+                        message:
+                          type: string
+                          example: OK
+                        data:
+                          type: "object"
+                          properties:
+                            last_page_url:
+                              type: string
+                              example: http://localhost:8000/api/flower?page=1&perpage=3
+                            next_page_url:
+                              type: string
+                              example: http://localhost:8000/api/flower?page=2&perpage=3
+                            prev_page_url:
+                              type: string
+                              example: null
+                            dataList:
+                              type: array
+                              items:
+                                type: "object"
+                                properties:
+                                  id:
+                                    type: integer
+                                    example: 1
+                                  flowerName:
+                                    type: string
+                                    example: orchid
+                                  flowerDesc:
+                                    type: string
+                                    example: nice flower
+                                  imageUrl:
+                                    type: string
+                                    example: "/images/uploads/flowers/sadfsdafdas.png"
+                                
+        '403':
+          description: error of parameter
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  code:
+                    type: string
+                    example: CODE_FORBIDDEN
+                  http_code:
+                    type: string
+                    example: 403
+                  content:
+                    type: "object"
+                    properties:
+                      error:
+                        type: array
+                        items:
+                          type: string
+                        example: [perpage must be integer]
+    put:
+      tags:
+      - Flower
+      summary: add flower to database
+      description:  Your account must be admin
+      parameters:
+        - name: name
+          in: query
+          required: true
+          description: name of flower
+          schema:
+            type: string
+        - name: desc
+          in: query
+          required: true
+          description: desc of flower
+          schema:
+            type: string
+        - name: image
+          in: query
+          required: true
+          description: image of flower
+          schema:
+            type: string
+            format: binary
+      responses:
+        '200':
+            description: Successful resend email
+            content:
+              application/json:
+                schema:
+                  type: "object"
+                  properties: 
+                    code:
+                      type: string
+                      example: 200
+                    http_code:
+                      type: string
+                      example: OK
+                    content:
+                      type: "object"
+                      properties:
+                        message:
+                          type: string
+                          example: OK
+        '403':
+          description: error of parameter
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  code:
+                    type: string
+                    example: CODE_FORBIDDEN
+                  http_code:
+                    type: string
+                    example: 403
+                  content:
+                    type: "object"
+                    properties:
+                      error:
+                        type: array
+                        items:
+                          type: string
+                        example: [name must not contain integer]
+        '403':
+          description: Unauthorized! you are not admin
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  code:
+                    type: string
+                    example: CODE_FORBIDDEN
+                  http_code:
+                    type: string
+                    example: 403
+                  content:
+                    type: "object"
+                    properties:
+                      error:
+                        type: string
+                        example: You are not an admin
+      security:
+        - bearerAuth: []  
+  /flowerBouquet:
+    get:
+      tags:
+      - FlowerBouquet
+      summary: get all flower bouquet list with pagination
+      description:  get all flower bouquet list with pagination
+      parameters:
+        - name: perpage
+          in: path
+          required: true
+          description: how much flower bouquet u want for 1 page
+          schema:
+            type: integer
+        - name: sortbys
+          required: false
+          in: query
+          description: Do you want to sort the list follow format column:sortby and use | to seperate if you have more(Note behind have higher priority)
+          schema:
+            type: string
+            example: name:asc|id:desc
+      responses:
+        '200':
+            description: Successful resend email
+            content:
+              application/json:
+                schema:
+                  type: "object"
+                  properties: 
+                    code:
+                      type: string
+                      example: 200
+                    http_code:
+                      type: string
+                      example: OK
+                    content:
+                      type: "object"
+                      properties:
+                        message:
+                          type: string
+                          example: OK
+                        data:
+                          type: "object"
+                          properties:
+                            last_page_url:
+                              type: string
+                              example: http://localhost:8000/api/flowerbouquet?page=1&perpage=3
+                            next_page_url:
+                              type: string
+                              example: http://localhost:8000/api/flowerbouquet?page=2&perpage=3
+                            prev_page_url:
+                              type: string
+                              example: null
+                            dataList:
+                              type: array
+                              items:
+                                type: "object"
+                                properties:
+                                  id:
+                                    type: integer
+                                    example: 1
+                                  name:
+                                    type: string
+                                    example: graduation bouquet
+                                  desc:
+                                    type: string
+                                    example: nice bouquet
+                                  price:
+                                    type: number
+                                    example: 12.50
+                                  flowerList:
+                                    type: array
+                                    items:
+                                      type: integer
+                                    example: [1,2]
+                                  imageUrl:
+                                    type: string
+                                    example: "/images/uploads/flowerbouquets/sadfsdafdas.png"
+                                
+        '403':
+          description: error of parameter
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  code:
+                    type: string
+                    example: CODE_FORBIDDEN
+                  http_code:
+                    type: string
+                    example: 403
+                  content:
+                    type: "object"
+                    properties:
+                      error:
+                        type: array
+                        items:
+                          type: string
+                        example: [perpage must be integer]
+    put:
+      tags:
+      - FlowerBouquet
+      summary: add bouquet to database
+      description:  Your account must be admin
+      parameters:
+        - name: name
+          in: query
+          required: true
+          description: name of bouquet
+          schema:
+            type: string
+        - name: desc
+          in: query
+          required: true
+          description: desc of bouquet
+          schema:
+            type: string
+        - name: price
+          in: query
+          required: true
+          description: price of the bouquet
+          schema:
+            type: string
+        - name: image
+          in: query
+          required: true
+          description: image of flower
+          schema:
+            type: string
+            format: binary
+        - name: category
+          in: query
+          required: true
+          description: category
+          schema:
+            type: string
+        - name: flowerList
+          in: query
+          required: true
+          description: price of the bouquet
+          schema:
+            type: array
+            items:
+              type: string
+              
+      responses:
+        '200':
+            description: Successful added 
+            content:
+              application/json:
+                schema:
+                  type: "object"
+                  properties: 
+                    code:
+                      type: string
+                      example: 200
+                    http_code:
+                      type: string
+                      example: OK
+                    content:
+                      type: "object"
+                      properties:
+                        message:
+                          type: string
+                          example: OK
+        '403':
+          description: error of parameter
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  code:
+                    type: string
+                    example: CODE_FORBIDDEN
+                  http_code:
+                    type: string
+                    example: 403
+                  content:
+                    type: "object"
+                    properties:
+                      error:
+                        type: array
+                        items:
+                          type: string
+                        example: [name must not contain integer]
+        '401':
+          description: Unauthorized! you are not admin
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  code:
+                    type: string
+                    example: CODE_UNAUTHORIZED
+                  http_code:
+                    type: string
+                    example: 401
+                  content:
+                    type: "object"
+                    properties:
+                      error:
+                        type: string
+                        example: You are not an admin
+      security:
+        - bearerAuth: []  
+                       
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  

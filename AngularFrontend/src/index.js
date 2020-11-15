@@ -14,21 +14,30 @@ angular
     "angular-loading-bar",
     "satellizer",
     "ngPatternRestrict",
-    "cannis.services.users"
+    "cannis.services.users",
+    "cannis.services.flowers",
+    "cannis.services.bouquets"
   ])
   .config(function(
     $stateProvider,
     $authProvider,
     $locationProvider,
+    $urlRouterProvider,
     $httpProvider,
     cfpLoadingBarProvider,
     endPointConstant
   ) {
+    
     $locationProvider.hashPrefix("");
 
+    $authProvider.baseUrl = null;
     $authProvider.loginUrl = endPointConstant.apiUrls.login;
     $httpProvider.defaults.headers.common["Accept"] = "application/json";
     $httpProvider.interceptors.push("httpInterceptor");
+
+    $urlRouterProvider
+      .when("","/home")
+      .when("/","/home");
 
     cfpLoadingBarProvider.includeSpinner = false;
     cfpLoadingBarProvider.includeBar = false;

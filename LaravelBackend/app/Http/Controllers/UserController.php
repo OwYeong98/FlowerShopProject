@@ -155,7 +155,7 @@ class UserController extends ApiController
         if($validation->fails()){
             $errors = $validation->errors();
 
-            return $this->respondWithError($errors->all(),self::CODE_FORBIDDEN);
+            return $this->respondWithError($errors->all(),self::CODE_BAD_REQUEST);
         } else{
 
             $errors = array();
@@ -185,7 +185,7 @@ class UserController extends ApiController
             /************************* */
 
             if(count($errors)>0){
-                return $this->respondWithError($errors,self::CODE_FORBIDDEN);
+                return $this->respondWithError($errors,self::CODE_BAD_REQUEST);
             }else{
                 //empty query builder
                 $querybuilder = UserModel::query();

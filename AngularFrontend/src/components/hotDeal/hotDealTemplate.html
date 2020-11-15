@@ -14,7 +14,7 @@
     <div class="carousel">
         <div class="custom-item" ng-repeat="item in data">
             <div ng-if="!!item.name" class="m-0 p-0">
-                <img ng-src="{{item.imgUrl}}" alt="">
+                <img ng-src="{{backendIp+item.imageUrl}}" alt="">
                 <p>
                     {{item.name}}<br>
                     <span class="price" ng-if="!!item.price">RM {{item.price}}</span>
